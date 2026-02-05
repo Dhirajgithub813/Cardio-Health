@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results & History - CardioPredict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">
+                <h1>❤️ CardioPredict</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/predict">Predict</a></li>
+                <li><a href="/analytics">Analytics</a></li>
+                <li><a href="/results" class="active">Results</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="results-section">
+        <div class="container">
+            <h2>Prediction Results & History</h2>
+            <p class="subtitle">Track and view all your predictions</p>
+
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>Loading prediction data...</p>
+            </div>
+
+            <div id="resultsContent" style="display: none;">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalPredictions">0</div>
+                        <div class="stat-label">Total Predictions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="highRiskCount">0</div>
+                        <div class="stat-label">High Risk</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="moderateRiskCount">0</div>
+                        <div class="stat-label">Moderate Risk</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="lowRiskCount">0</div>
+                        <div class="stat-label">Low Risk</div>
+                    </div>
+                </div>
+
+                <!-- Risk Distribution Chart -->
+                <div class="chart-container">
+                    <h3>Risk Distribution</h3>
+                    <canvas id="riskDistributionChart"></canvas>
+                </div>
+
+                <!-- Detailed Stats -->
+                <div class="detailed-stats">
+                    <h3>Detailed Statistics</h3>
+                    <div class="stats-table">
+                        <div class="table-header">
+                            <div>Metric</div>
+                            <div>Value</div>
+                        </div>
+                        <div class="table-row">
+                            <div>With Disease</div>
+                            <div id="diseaseCount">-</div>
+                        </div>
+                        <div class="table-row">
+                            <div>Without Disease</div>
+                            <div id="healthyCount">-</div>
+                        </div>
+                        <div class="table-row">
+                            <div>Disease Rate</div>
+                            <div id="diseaseRate">-</div>
+                        </div>
+                        <div class="table-row">
+                            <div>Avg Risk Percentage</div>
+                            <div id="avgRisk">-</div>
+                        </div>
+                        <div class="table-row">
+                            <div>Avg Age (years)</div>
+                            <div id="avgAge">-</div>
+                        </div>
+                        <div class="table-row">
+                            <div>Avg Weight (kg)</div>
+                            <div id="avgWeight">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Predictions Table -->
+                <div class="prediction-history">
+                    <h3>Recent Predictions</h3>
+                    <div class="history-controls">
+                        <button id="loadMoreBtn" class="btn btn-secondary">Load More</button>
+                        <button id="clearHistoryBtn" class="btn btn-danger">Clear History</button>
+                    </div>
+                    <div class="history-table-wrapper">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date/Time</th>
+                                    <th>Age (yrs)</th>
+                                    <th>Risk %</th>
+                                    <th>Risk Level</th>
+                                    <th>Disease</th>
+                                    <th>BP</th>
+                                </tr>
+                            </thead>
+                            <tbody id="predictionTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-message" id="errorContainer" style="display: none;"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cardiovascular Disease Prediction System</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Results page specific functionality
+        document.addEventListener('DOMContentLoaded', async function() {
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const resultsContent = document.getElementById('resultsContent');
+            const errorContainer = document.getElementById('errorContainer');
+
+            try {
+                // Load prediction status summary
+                const statusSummary = await API.getPredictionStatusSummary();
+                
+                // Load detailed statistics
+                const stats = await API.getPredictionDetailedStats();
+
+                // Display results
+                displayResults(statusSummary, stats);
+                loadingSpinner.style.display = 'none';
+                resultsContent.style.display = 'block';
+
+            } catch (error) {
+                console.error('Error loading results:', error);
+                errorContainer.textContent = '❌ Error: ' + error.message;
+                errorContainer.style.display = 'block';
+                loadingSpinner.style.display = 'none';
+            }
+
+            // Load more button
+            document.getElementById('loadMoreBtn').addEventListener('click', async function() {
+                const table = document.getElementById('predictionTableBody');
+                const currentRows = table.querySelectorAll('tr').length;
+                const history = await API.getPredictionHistory(10, currentRows);
+                
+                history.predictions.forEach(pred => {
+                    addRowToTable(pred);
+                });
+            });
+
+            // Clear history button
+            document.getElementById('clearHistoryBtn').addEventListener('click', async function() {
+                if (confirm('Are you sure you want to clear all prediction history?')) {
+                    try {
+                        const result = await API.clearPredictionHistory();
+                        alert(result.message);
+                        location.reload();
+                    } catch (error) {
+                        alert('Error clearing history: ' + error.message);
+                    }
+                }
+            });
+
+            function displayResults(statusSummary, stats) {
+                // Update stat cards
+                document.getElementById('totalPredictions').textContent = statusSummary.total_predictions;
+                document.getElementById('highRiskCount').textContent = statusSummary.risk_distribution.high_risk;
+                document.getElementById('moderateRiskCount').textContent = statusSummary.risk_distribution.moderate_risk;
+                document.getElementById('lowRiskCount').textContent = statusSummary.risk_distribution.low_risk;
+
+                // Risk Distribution Chart
+                if (statusSummary.total_predictions > 0) {
+                    const ctx = document.getElementById('riskDistributionChart').getContext('2d');
+                    if (window.riskDistChart) {
+                        window.riskDistChart.destroy();
+                    }
+
+                    window.riskDistChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['High Risk', 'Moderate Risk', 'Low Risk'],
+                            datasets: [{
+                                data: [
+                                    statusSummary.risk_distribution.high_risk,
+                                    statusSummary.risk_distribution.moderate_risk,
+                                    statusSummary.risk_distribution.low_risk
+                                ],
+                                backgroundColor: [
+                                    'rgba(255, 107, 107, 0.8)',
+                                    'rgba(243, 156, 18, 0.8)',
+                                    'rgba(46, 204, 113, 0.8)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 107, 107, 1)',
+                                    'rgba(243, 156, 18, 1)',
+                                    'rgba(46, 204, 113, 1)'
+                                ],
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Update detailed stats
+                if (stats.status === 'success') {
+                    document.getElementById('diseaseCount').textContent = stats.disease_rate.with_disease;
+                    document.getElementById('healthyCount').textContent = stats.disease_rate.without_disease;
+                    document.getElementById('diseaseRate').textContent = stats.disease_rate.percentage + '%';
+                    document.getElementById('avgRisk').textContent = stats.risk_percentage_stats.average + '%';
+                    document.getElementById('avgAge').textContent = Utils.ageInYears(stats.age_stats.average);
+                    document.getElementById('avgWeight').textContent = stats.weight_stats.average + ' kg';
+                }
+
+                // Populate prediction history table
+                if (statusSummary.recent_predictions && statusSummary.recent_predictions.length > 0) {
+                    statusSummary.recent_predictions.forEach(pred => {
+                        addRowToTable(pred);
+                    });
+                }
+            }
+
+            function addRowToTable(pred) {
+                const tbody = document.getElementById('predictionTableBody');
+                const row = document.createElement('tr');
+                
+                // Get age in years - check if age_years exists, otherwise convert from age_days
+                const ageYears = pred.age_years || Utils.ageInYears(pred.age);
+                const datetime = new Date(pred.timestamp).toLocaleString();
+                const riskColor = pred.color === 'red' ? '#ff6b6b' : (pred.color === 'orange' ? '#f39c12' : '#2ecc71');
+                
+                row.innerHTML = `
+                    <td><code>${pred.id}</code></td>
+                    <td>${datetime}</td>
+                    <td>${ageYears}</td>
+                    <td><strong style="color: ${riskColor}">${pred.risk_percentage.toFixed(2)}%</strong></td>
+                    <td><span class="risk-badge" style="background-color: ${riskColor}20; color: ${riskColor}; border: 1px solid ${riskColor}">${pred.risk_level}</span></td>
+                    <td>${pred.has_disease ? '🔴 Yes' : '🟢 No'}</td>
+                    <td>${pred.bp_systolic}/${pred.bp_diastolic}</td>
+                `;
+                tbody.appendChild(row);
+            }
+        });
+    </script>
+</body>
+</html>

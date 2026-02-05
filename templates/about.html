@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - CardioPredict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">
+                <h1>❤️ CardioPredict</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/predict">Predict</a></li>
+                <li><a href="/analytics">Analytics</a></li>
+                <li><a href="/results">Results</a></li>
+                <li><a href="/about" class="active">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="about-section">
+        <div class="container">
+            <h2>About CardioPredict</h2>
+
+            <div class="about-content">
+                <section class="about-subsection">
+                    <h3>Project Overview</h3>
+                    <p>
+                        CardioPredict is an intelligent machine learning system designed to predict the risk of 
+                        cardiovascular disease based on various health metrics and lifestyle factors. This project 
+                        combines cutting-edge AI technology with user-friendly interface to provide accessible 
+                        health risk assessment to everyone.
+                    </p>
+                </section>
+
+                <section class="about-subsection">
+                    <h3>Model & Technology</h3>
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <h4>Machine Learning Model</h4>
+                            <p>
+                                Random Forest Classifier with 100 decision trees trained on 70,000+ patient records.
+                                The model achieves high accuracy by analyzing complex patterns in health data.
+                            </p>
+                        </div>
+                        <div class="tech-item">
+                            <h4>Backend Technology</h4>
+                            <p>
+                                Built with Flask (Python) for robust RESTful API endpoints, providing real-time 
+                                predictions and analytics with CORS support for seamless frontend integration.
+                            </p>
+                        </div>
+                        <div class="tech-item">
+                            <h4>Frontend Technology</h4>
+                            <p>
+                                Modern HTML5, CSS3, and JavaScript creating a responsive, user-friendly interface.
+                                Interactive charts powered by Chart.js for data visualization.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="about-subsection">
+                    <h3>Input Parameters</h3>
+                    <table class="params-table">
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                        </tr>
+                        <tr>
+                            <td>Age</td>
+                            <td>Patient age in days</td>
+                            <td>Numerical</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>1 = Male, 2 = Female</td>
+                            <td>Categorical</td>
+                        </tr>
+                        <tr>
+                            <td>Height</td>
+                            <td>Height in centimeters</td>
+                            <td>Numerical</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>Weight in kilograms</td>
+                            <td>Numerical</td>
+                        </tr>
+                        <tr>
+                            <td>Systolic BP (ap_hi)</td>
+                            <td>Systolic blood pressure</td>
+                            <td>Numerical</td>
+                        </tr>
+                        <tr>
+                            <td>Diastolic BP (ap_lo)</td>
+                            <td>Diastolic blood pressure</td>
+                            <td>Numerical</td>
+                        </tr>
+                        <tr>
+                            <td>Cholesterol</td>
+                            <td>Cholesterol level (0-3)</td>
+                            <td>Categorical</td>
+                        </tr>
+                        <tr>
+                            <td>Glucose</td>
+                            <td>Glucose level (0-3)</td>
+                            <td>Categorical</td>
+                        </tr>
+                        <tr>
+                            <td>Smoking</td>
+                            <td>Smoking status (0 or 1)</td>
+                            <td>Binary</td>
+                        </tr>
+                        <tr>
+                            <td>Alcohol</td>
+                            <td>Alcohol consumption (0 or 1)</td>
+                            <td>Binary</td>
+                        </tr>
+                        <tr>
+                            <td>Physical Activity</td>
+                            <td>Physical activity (0 or 1)</td>
+                            <td>Binary</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section class="about-subsection">
+                    <h3>How Predictions Work</h3>
+                    <ol class="how-it-works-list">
+                        <li>
+                            <strong>Data Input:</strong> You enter your health metrics through the intuitive form
+                        </li>
+                        <li>
+                            <strong>Feature Scaling:</strong> The data is standardized using the same scaler used 
+                            during model training
+                        </li>
+                        <li>
+                            <strong>Model Analysis:</strong> The Random Forest model analyzes patterns learned from 
+                            thousands of patients
+                        </li>
+                        <li>
+                            <strong>Risk Calculation:</strong> The model outputs both probability and risk classification
+                        </li>
+                        <li>
+                            <strong>Results Display:</strong> You receive a detailed risk assessment with visual 
+                            representation and recommendations
+                        </li>
+                    </ol>
+                </section>
+
+                <section class="about-subsection">
+                    <h3>Risk Assessment Levels</h3>
+                    <div class="risk-levels">
+                        <div class="risk-level-item low">
+                            <h4>🟢 Low Risk (0-30%)</h4>
+                            <p>Your cardiovascular disease risk is low. Maintain healthy lifestyle habits.</p>
+                        </div>
+                        <div class="risk-level-item moderate">
+                            <h4>🟡 Moderate Risk (30-60%)</h4>
+                            <p>You have some risk factors. Consider consulting with a healthcare provider.</p>
+                        </div>
+                        <div class="risk-level-item high">
+                            <h4>🔴 High Risk (60%+)</h4>
+                            <p>You have significant risk factors. Please consult with a healthcare professional.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="about-subsection">
+                    <h3>Important Disclaimer</h3>
+                    <div class="disclaimer">
+                        <p>
+                            <strong>⚠️ Medical Disclaimer:</strong> This tool is for educational and informational 
+                            purposes only and should NOT be used as a substitute for professional medical advice, 
+                            diagnosis, or treatment. Always consult with qualified healthcare professionals for 
+                            medical concerns. The predictions made by this system are based on machine learning models 
+                            and may not be 100% accurate. Individual health conditions vary greatly and should be 
+                            evaluated by medical experts.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="about-subsection">
+                    <h3>Dataset Information</h3>
+                    <p>
+                        The model is trained on a comprehensive cardiovascular disease dataset containing 70,000+ 
+                        patient records. The dataset includes demographic information, vital signs, and lifestyle 
+                        factors collected from various medical sources. All data has been anonymized and preprocessed 
+                        to ensure privacy and data quality.
+                    </p>
+                </section>
+
+                <section class="about-subsection">
+                    <h3>Contact & Support</h3>
+                    <p>
+                        For questions, feedback, or technical support, please reach out through the contact form 
+                        or email us. Your feedback helps us improve the system and provide better health insights.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cardiovascular Disease Prediction System</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

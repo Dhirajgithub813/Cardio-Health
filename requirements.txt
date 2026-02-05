@@ -1,0 +1,22 @@
+# ==================== BACKEND FRAMEWORK ====================
+Flask==2.3.0
+Flask-CORS==4.0.0
+Werkzeug==2.3.0
+
+# ==================== MACHINE LEARNING ====================
+scikit-learn==1.2.2
+pandas==1.5.3
+numpy==1.24.3
+scipy==1.10.1
+
+# ==================== UTILITIES ====================
+python-dotenv==1.0.0
+requests==2.31.0
+
+# ==================== OPTIONAL (Future Use) ====================
+# SQLAlchemy==2.0.0  # For database support
+# Flask-SQLAlchemy==3.0.0  # Flask-SQL integration
+# python-dateutil==2.8.2  # Date utilities
+# Pillow==10.0.0  # Image processing
+# gunicorn==20.1.0  # Production WSGI server
+# redis==4.5.0  # Caching backend

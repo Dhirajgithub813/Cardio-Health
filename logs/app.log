@@ -1,0 +1,575 @@
+2026-02-05 13:07:24,810 - app - INFO - ==================================================
+2026-02-05 13:07:24,811 - app - INFO - CardioPredict Backend Started
+2026-02-05 13:07:24,811 - app - INFO - Environment: development
+2026-02-05 13:07:24,811 - app - INFO - Debug Mode: True
+2026-02-05 13:07:24,811 - app - INFO - Timestamp: 2026-02-05 13:07:24.811506
+2026-02-05 13:07:24,811 - app - INFO - ==================================================
+2026-02-05 13:07:25,897 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:07:25,897 - app - INFO -   - Features: 12
+2026-02-05 13:07:25,901 - app - INFO - ============================================================
+2026-02-05 13:07:25,902 - app - INFO - ============================================================
+2026-02-05 13:07:25,903 - app - INFO - Environment: development
+2026-02-05 13:07:25,903 - app - INFO - Debug Mode: True
+2026-02-05 13:07:25,904 - app - INFO - Model Loaded: True
+2026-02-05 13:07:25,904 - app - INFO - ============================================================
+2026-02-05 13:07:25,904 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:07:25,904 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:07:25,904 - app - INFO - ============================================================
+2026-02-05 13:07:26,524 - app - INFO - ==================================================
+2026-02-05 13:07:26,524 - app - INFO - CardioPredict Backend Started
+2026-02-05 13:07:26,525 - app - INFO - Environment: development
+2026-02-05 13:07:26,525 - app - INFO - Debug Mode: True
+2026-02-05 13:07:26,525 - app - INFO - Timestamp: 2026-02-05 13:07:26.525648
+2026-02-05 13:07:26,526 - app - INFO - ==================================================
+2026-02-05 13:07:27,499 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:07:27,499 - app - INFO -   - Features: 12
+2026-02-05 13:07:27,502 - app - INFO - ============================================================
+2026-02-05 13:07:27,503 - app - INFO - ============================================================
+2026-02-05 13:07:27,503 - app - INFO - Environment: development
+2026-02-05 13:07:27,503 - app - INFO - Debug Mode: True
+2026-02-05 13:07:27,503 - app - INFO - Model Loaded: True
+2026-02-05 13:07:27,504 - app - INFO - ============================================================
+2026-02-05 13:07:27,504 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:07:27,504 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:07:27,504 - app - INFO - ============================================================
+2026-02-05 13:07:53,989 - app - INFO - ==================================================
+2026-02-05 13:07:53,990 - app - INFO - CardioPredict Backend Started
+2026-02-05 13:07:53,990 - app - INFO - Environment: development
+2026-02-05 13:07:53,990 - app - INFO - Debug Mode: True
+2026-02-05 13:07:53,990 - app - INFO - Timestamp: 2026-02-05 13:07:53.990544
+2026-02-05 13:07:53,990 - app - INFO - ==================================================
+2026-02-05 13:07:54,902 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:07:54,902 - app - INFO -   - Features: 12
+2026-02-05 13:07:54,905 - app - INFO - ============================================================
+2026-02-05 13:07:54,907 - app - INFO - ============================================================
+2026-02-05 13:07:54,907 - app - INFO - Environment: development
+2026-02-05 13:07:54,907 - app - INFO - Debug Mode: True
+2026-02-05 13:07:54,908 - app - INFO - Model Loaded: True
+2026-02-05 13:07:54,908 - app - INFO - ============================================================
+2026-02-05 13:07:54,908 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:07:54,908 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:07:54,908 - app - INFO - ============================================================
+2026-02-05 13:07:58,994 - app - INFO - ==================================================
+2026-02-05 13:07:58,995 - app - INFO - CardioPredict Backend Started
+2026-02-05 13:07:58,996 - app - INFO - Environment: development
+2026-02-05 13:07:58,996 - app - INFO - Debug Mode: True
+2026-02-05 13:07:58,997 - app - INFO - Timestamp: 2026-02-05 13:07:58.997663
+2026-02-05 13:07:58,998 - app - INFO - ==================================================
+2026-02-05 13:07:59,919 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:07:59,919 - app - INFO -   - Features: 12
+2026-02-05 13:07:59,922 - app - INFO - ============================================================
+2026-02-05 13:07:59,923 - app - INFO - ============================================================
+2026-02-05 13:07:59,923 - app - INFO - Environment: development
+2026-02-05 13:07:59,923 - app - INFO - Debug Mode: True
+2026-02-05 13:07:59,924 - app - INFO - Model Loaded: True
+2026-02-05 13:07:59,924 - app - INFO - ============================================================
+2026-02-05 13:07:59,924 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:07:59,924 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:07:59,924 - app - INFO - ============================================================
+2026-02-05 13:08:03,483 - app - INFO - ==================================================
+2026-02-05 13:08:03,483 - app - INFO - CardioPredict Backend Started
+2026-02-05 13:08:03,483 - app - INFO - Environment: development
+2026-02-05 13:08:03,484 - app - INFO - Debug Mode: True
+2026-02-05 13:08:03,484 - app - INFO - Timestamp: 2026-02-05 13:08:03.484247
+2026-02-05 13:08:03,484 - app - INFO - ==================================================
+2026-02-05 13:08:04,533 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:08:04,533 - app - INFO -   - Features: 12
+2026-02-05 13:08:04,537 - app - INFO - ============================================================
+2026-02-05 13:08:04,538 - app - INFO - ============================================================
+2026-02-05 13:08:04,538 - app - INFO - Environment: development
+2026-02-05 13:08:04,539 - app - INFO - Debug Mode: True
+2026-02-05 13:08:04,539 - app - INFO - Model Loaded: True
+2026-02-05 13:08:04,539 - app - INFO - ============================================================
+2026-02-05 13:08:04,539 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:08:04,539 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:08:04,539 - app - INFO - ============================================================
+2026-02-05 13:08:05,129 - app - INFO - ==================================================
+2026-02-05 13:08:05,129 - app - INFO - CardioPredict Backend Started
+2026-02-05 13:08:05,129 - app - INFO - Environment: development
+2026-02-05 13:08:05,130 - app - INFO - Debug Mode: True
+2026-02-05 13:08:05,130 - app - INFO - Timestamp: 2026-02-05 13:08:05.130195
+2026-02-05 13:08:05,130 - app - INFO - ==================================================
+2026-02-05 13:08:06,155 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:08:06,155 - app - INFO -   - Features: 12
+2026-02-05 13:08:06,158 - app - INFO - ============================================================
+2026-02-05 13:08:06,159 - app - INFO - ============================================================
+2026-02-05 13:08:06,159 - app - INFO - Environment: development
+2026-02-05 13:08:06,159 - app - INFO - Debug Mode: True
+2026-02-05 13:08:06,159 - app - INFO - Model Loaded: True
+2026-02-05 13:08:06,159 - app - INFO - ============================================================
+2026-02-05 13:08:06,160 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:08:06,160 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:08:06,160 - app - INFO - ============================================================
+2026-02-05 13:08:19,822 - app - INFO - ==================================================
+2026-02-05 13:08:19,823 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:08:19,823 - app - INFO - Environment: development
+2026-02-05 13:08:19,823 - app - INFO - Debug Mode: True
+2026-02-05 13:08:19,823 - app - INFO - Timestamp: 2026-02-05 13:08:19.823214
+2026-02-05 13:08:19,823 - app - INFO - ==================================================
+2026-02-05 13:08:20,013 - app - INFO - ==================================================
+2026-02-05 13:08:20,013 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:08:20,014 - app - INFO - Environment: development
+2026-02-05 13:08:20,014 - app - INFO - Debug Mode: True
+2026-02-05 13:08:20,014 - app - INFO - Timestamp: 2026-02-05 13:08:20.014183
+2026-02-05 13:08:20,014 - app - INFO - ==================================================
+2026-02-05 13:08:20,754 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:08:20,754 - app - INFO -   - Features: 12
+2026-02-05 13:08:20,757 - app - INFO - ============================================================
+2026-02-05 13:08:20,759 - app - INFO - ============================================================
+2026-02-05 13:08:20,759 - app - INFO - Environment: development
+2026-02-05 13:08:20,759 - app - INFO - Debug Mode: True
+2026-02-05 13:08:20,759 - app - INFO - Model Loaded: True
+2026-02-05 13:08:20,759 - app - INFO - ============================================================
+2026-02-05 13:08:20,760 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:08:20,760 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:08:20,760 - app - INFO - ============================================================
+2026-02-05 13:08:20,976 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:08:20,976 - app - INFO -   - Features: 12
+2026-02-05 13:08:20,979 - app - INFO - ============================================================
+2026-02-05 13:08:20,981 - app - INFO - ============================================================
+2026-02-05 13:08:20,981 - app - INFO - Environment: development
+2026-02-05 13:08:20,981 - app - INFO - Debug Mode: True
+2026-02-05 13:08:20,981 - app - INFO - Model Loaded: True
+2026-02-05 13:08:20,981 - app - INFO - ============================================================
+2026-02-05 13:08:20,981 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:08:20,982 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:08:20,982 - app - INFO - ============================================================
+2026-02-05 13:08:24,753 - app - INFO - ==================================================
+2026-02-05 13:08:24,753 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:08:24,753 - app - INFO - Environment: development
+2026-02-05 13:08:24,754 - app - INFO - Debug Mode: True
+2026-02-05 13:08:24,754 - app - INFO - Timestamp: 2026-02-05 13:08:24.754201
+2026-02-05 13:08:24,754 - app - INFO - ==================================================
+2026-02-05 13:08:24,990 - app - INFO - ==================================================
+2026-02-05 13:08:24,990 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:08:24,991 - app - INFO - Environment: development
+2026-02-05 13:08:24,991 - app - INFO - Debug Mode: True
+2026-02-05 13:08:24,991 - app - INFO - Timestamp: 2026-02-05 13:08:24.991840
+2026-02-05 13:08:24,991 - app - INFO - ==================================================
+2026-02-05 13:08:25,667 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:08:25,667 - app - INFO -   - Features: 12
+2026-02-05 13:08:25,670 - app - INFO - ============================================================
+2026-02-05 13:08:25,671 - app - INFO - ============================================================
+2026-02-05 13:08:25,671 - app - INFO - Environment: development
+2026-02-05 13:08:25,671 - app - INFO - Debug Mode: True
+2026-02-05 13:08:25,672 - app - INFO - Model Loaded: True
+2026-02-05 13:08:25,672 - app - INFO - ============================================================
+2026-02-05 13:08:25,672 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:08:25,672 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:08:25,672 - app - INFO - ============================================================
+2026-02-05 13:08:25,903 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:08:25,903 - app - INFO -   - Features: 12
+2026-02-05 13:08:25,906 - app - INFO - ============================================================
+2026-02-05 13:08:25,907 - app - INFO - ============================================================
+2026-02-05 13:08:25,908 - app - INFO - Environment: development
+2026-02-05 13:08:25,908 - app - INFO - Debug Mode: True
+2026-02-05 13:08:25,908 - app - INFO - Model Loaded: True
+2026-02-05 13:08:25,908 - app - INFO - ============================================================
+2026-02-05 13:08:25,908 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:08:25,908 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:08:25,909 - app - INFO - ============================================================
+2026-02-05 13:09:07,369 - app - DEBUG - GET / - Home page
+2026-02-05 13:09:14,094 - app - DEBUG - GET /analytics - Analytics page
+2026-02-05 13:09:16,863 - app - DEBUG - GET /results - Results page
+2026-02-05 13:09:20,524 - app - DEBUG - GET /about - About page
+2026-02-05 13:09:26,207 - app - INFO - ==================================================
+2026-02-05 13:09:26,210 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:09:26,207 - app - INFO - ==================================================
+2026-02-05 13:09:26,211 - app - INFO - Environment: development
+2026-02-05 13:09:26,211 - app - INFO - Debug Mode: True
+2026-02-05 13:09:26,211 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:09:26,212 - app - INFO - Timestamp: 2026-02-05 13:09:26.212450
+2026-02-05 13:09:26,212 - app - INFO - Environment: development
+2026-02-05 13:09:26,212 - app - INFO - ==================================================
+2026-02-05 13:09:26,212 - app - INFO - Debug Mode: True
+2026-02-05 13:09:26,212 - app - INFO - Timestamp: 2026-02-05 13:09:26.212450
+2026-02-05 13:09:26,212 - app - INFO - ==================================================
+2026-02-05 13:09:27,202 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:09:27,203 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:09:27,203 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:09:27,203 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:09:27,203 - app - INFO -   - Features: 12
+2026-02-05 13:09:27,203 - app - INFO -   - Features: 12
+2026-02-05 13:09:27,206 - app - INFO - ============================================================
+2026-02-05 13:09:27,206 - app - INFO - ============================================================
+2026-02-05 13:09:27,206 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:09:27,206 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:09:27,206 - app - INFO - ============================================================
+2026-02-05 13:09:27,206 - app - INFO - ============================================================
+2026-02-05 13:09:27,206 - app - INFO - Environment: development
+2026-02-05 13:09:27,206 - app - INFO - Environment: development
+2026-02-05 13:09:27,207 - app - INFO - Debug Mode: True
+2026-02-05 13:09:27,206 - app - INFO - Debug Mode: True
+2026-02-05 13:09:27,207 - app - INFO - Model Loaded: True
+2026-02-05 13:09:27,207 - app - INFO - Model Loaded: True
+2026-02-05 13:09:27,207 - app - INFO - ============================================================
+2026-02-05 13:09:27,207 - app - INFO - ============================================================
+2026-02-05 13:09:27,207 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:09:27,207 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:09:27,207 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:09:27,207 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:09:27,208 - app - INFO - ============================================================
+2026-02-05 13:09:27,208 - app - INFO - ============================================================
+2026-02-05 13:09:49,568 - app - INFO - ==================================================
+2026-02-05 13:09:49,569 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:09:49,569 - app - INFO - Environment: development
+2026-02-05 13:09:49,570 - app - INFO - Debug Mode: True
+2026-02-05 13:09:49,570 - app - INFO - ==================================================
+2026-02-05 13:09:49,570 - app - INFO - Timestamp: 2026-02-05 13:09:49.570257
+2026-02-05 13:09:49,570 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:09:49,570 - app - INFO - ==================================================
+2026-02-05 13:09:49,570 - app - INFO - Environment: development
+2026-02-05 13:09:49,570 - app - INFO - Debug Mode: True
+2026-02-05 13:09:49,571 - app - INFO - Timestamp: 2026-02-05 13:09:49.571257
+2026-02-05 13:09:49,571 - app - INFO - ==================================================
+2026-02-05 13:09:50,513 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:09:50,513 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:09:50,514 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:09:50,514 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:09:50,514 - app - INFO -   - Features: 12
+2026-02-05 13:09:50,516 - app - INFO - ============================================================
+2026-02-05 13:09:50,517 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:09:50,517 - app - INFO - ============================================================
+2026-02-05 13:09:50,517 - app - INFO - ============================================================
+2026-02-05 13:09:50,517 - app - INFO - Environment: development
+2026-02-05 13:09:50,517 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:09:50,517 - app - INFO - Debug Mode: True
+2026-02-05 13:09:50,517 - app - INFO - ============================================================
+2026-02-05 13:09:50,517 - app - INFO - Model Loaded: True
+2026-02-05 13:09:50,518 - app - INFO - Environment: development
+2026-02-05 13:09:50,518 - app - INFO - ============================================================
+2026-02-05 13:09:50,518 - app - INFO - Debug Mode: True
+2026-02-05 13:09:50,518 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:09:50,518 - app - INFO - Model Loaded: True
+2026-02-05 13:09:50,518 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:09:50,518 - app - INFO - ============================================================
+2026-02-05 13:09:50,518 - app - INFO - ============================================================
+2026-02-05 13:09:50,518 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:09:50,519 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:09:50,519 - app - INFO - ============================================================
+2026-02-05 13:10:05,150 - app - INFO - ==================================================
+2026-02-05 13:10:05,150 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:10:05,151 - app - INFO - Environment: development
+2026-02-05 13:10:05,151 - app - INFO - Debug Mode: True
+2026-02-05 13:10:05,151 - app - INFO - Timestamp: 2026-02-05 13:10:05.151625
+2026-02-05 13:10:05,152 - app - INFO - ==================================================
+2026-02-05 13:10:06,023 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:10:06,024 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:10:06,024 - app - INFO -   - Features: 12
+2026-02-05 13:10:06,027 - app - INFO - ============================================================
+2026-02-05 13:10:06,028 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:10:06,028 - app - INFO - ============================================================
+2026-02-05 13:10:06,028 - app - INFO - Environment: development
+2026-02-05 13:10:06,029 - app - INFO - Debug Mode: True
+2026-02-05 13:10:06,029 - app - INFO - Model Loaded: True
+2026-02-05 13:10:06,029 - app - INFO - ============================================================
+2026-02-05 13:10:06,029 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:10:06,030 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:10:06,030 - app - INFO - ============================================================
+2026-02-05 13:10:13,232 - app - INFO - ==================================================
+2026-02-05 13:10:13,233 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:10:13,233 - app - INFO - Environment: development
+2026-02-05 13:10:13,233 - app - INFO - Debug Mode: True
+2026-02-05 13:10:13,234 - app - INFO - Timestamp: 2026-02-05 13:10:13.234069
+2026-02-05 13:10:13,234 - app - INFO - ==================================================
+2026-02-05 13:10:14,099 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:10:14,099 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:10:14,100 - app - INFO -   - Features: 12
+2026-02-05 13:10:14,103 - app - INFO - ============================================================
+2026-02-05 13:10:14,103 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:10:14,103 - app - INFO - ============================================================
+2026-02-05 13:10:14,103 - app - INFO - Environment: development
+2026-02-05 13:10:14,103 - app - INFO - Debug Mode: True
+2026-02-05 13:10:14,104 - app - INFO - Model Loaded: True
+2026-02-05 13:10:14,104 - app - INFO - ============================================================
+2026-02-05 13:10:14,104 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:10:14,104 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:10:14,104 - app - INFO - ============================================================
+2026-02-05 13:10:46,837 - app - WARNING - Validation error: Missing required field: gender
+2026-02-05 13:10:53,181 - app - WARNING - Validation error: Missing required field: age
+2026-02-05 13:11:00,957 - app - ERROR - Error: PredictionError - X has 11 features, but StandardScaler is expecting 12 features as input.
+2026-02-05 13:11:00,958 - app - ERROR - Context: Data: {'smoke': 0, 'height': 170, 'ap_hi': 130, 'weight': 75, 'alco': 0, 'ap_lo': 85, 'cholesterol': 1, 'gluc': 1, 'active': 1, 'gender': 1, 'age': 50}
+2026-02-05 13:11:08,787 - app - WARNING - 404 Error: /api/features
+2026-02-05 13:11:19,373 - app - ERROR - Error: PredictionError - X has 11 features, but StandardScaler is expecting 12 features as input.
+2026-02-05 13:11:19,373 - app - ERROR - Context: Data: {'smoke': 0, 'height': 170, 'ap_hi': 130, 'weight': 75, 'alco': 0, 'ap_lo': 85, 'cholesterol': 1, 'gluc': 1, 'active': 1, 'gender': 1, 'bmi': 26, 'age': 50}
+2026-02-05 13:11:28,010 - app - ERROR - Error: PredictionError - X has 11 features, but StandardScaler is expecting 12 features as input.
+2026-02-05 13:11:28,011 - app - ERROR - Context: Data: {'smoke': 0, 'height': 170, 'ap_hi': 130, 'weight': 75, 'alco': 0, 'ap_lo': 85, 'cholesterol': 1, 'gluc': 1, 'active': 1, 'gender': 1, 'age': 50}
+2026-02-05 13:11:57,209 - app - INFO - ==================================================
+2026-02-05 13:11:57,210 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:11:57,211 - app - INFO - Environment: development
+2026-02-05 13:11:57,211 - app - INFO - Debug Mode: True
+2026-02-05 13:11:57,212 - app - INFO - Timestamp: 2026-02-05 13:11:57.212735
+2026-02-05 13:11:57,212 - app - INFO - ==================================================
+2026-02-05 13:11:58,179 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:11:58,179 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:11:58,179 - app - INFO -   - Features: 12
+2026-02-05 13:11:58,183 - app - INFO - ============================================================
+2026-02-05 13:11:58,184 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:11:58,184 - app - INFO - ============================================================
+2026-02-05 13:11:58,184 - app - INFO - Environment: development
+2026-02-05 13:11:58,184 - app - INFO - Debug Mode: True
+2026-02-05 13:11:58,184 - app - INFO - Model Loaded: True
+2026-02-05 13:11:58,185 - app - INFO - ============================================================
+2026-02-05 13:11:58,185 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:11:58,185 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:11:58,185 - app - INFO - ============================================================
+2026-02-05 13:12:05,202 - app - ERROR - Error: PredictionError - X has 11 features, but StandardScaler is expecting 12 features as input.
+2026-02-05 13:12:05,202 - app - ERROR - Context: Data: {'smoke': 0, 'height': 170, 'ap_hi': 130, 'weight': 75, 'alco': 0, 'ap_lo': 85, 'cholesterol': 1, 'gluc': 1, 'active': 1, 'gender': 1, 'age': 50}
+2026-02-05 13:12:23,827 - app - ERROR - Error: PredictionError - X has 11 features, but StandardScaler is expecting 12 features as input.
+2026-02-05 13:12:23,828 - app - ERROR - Context: Data: {'smoke': 0, 'height': 170, 'ap_hi': 130, 'weight': 75, 'alco': 0, 'ap_lo': 85, 'cholesterol': 1, 'gluc': 1, 'active': 1, 'gender': 1, 'age': 50}
+2026-02-05 13:12:32,994 - app - INFO - ==================================================
+2026-02-05 13:12:32,995 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:12:32,995 - app - INFO - Environment: development
+2026-02-05 13:12:32,995 - app - INFO - Debug Mode: True
+2026-02-05 13:12:32,996 - app - INFO - Timestamp: 2026-02-05 13:12:32.996725
+2026-02-05 13:12:32,996 - app - INFO - ==================================================
+2026-02-05 13:12:33,903 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:12:33,904 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:12:33,904 - app - INFO -   - Features: 12
+2026-02-05 13:12:33,907 - app - INFO - ============================================================
+2026-02-05 13:12:33,908 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:12:33,908 - app - INFO - ============================================================
+2026-02-05 13:12:33,908 - app - INFO - Environment: development
+2026-02-05 13:12:33,909 - app - INFO - Debug Mode: True
+2026-02-05 13:12:33,909 - app - INFO - Model Loaded: True
+2026-02-05 13:12:33,909 - app - INFO - ============================================================
+2026-02-05 13:12:33,909 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:12:33,910 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:12:33,910 - app - INFO - ============================================================
+2026-02-05 13:12:36,809 - app - INFO - ==================================================
+2026-02-05 13:12:36,809 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:12:36,810 - app - INFO - Environment: development
+2026-02-05 13:12:36,810 - app - INFO - Debug Mode: True
+2026-02-05 13:12:36,810 - app - INFO - Timestamp: 2026-02-05 13:12:36.810233
+2026-02-05 13:12:36,811 - app - INFO - ==================================================
+2026-02-05 13:12:37,677 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:12:37,677 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:12:37,677 - app - INFO -   - Features: 12
+2026-02-05 13:12:37,680 - app - INFO - ============================================================
+2026-02-05 13:12:37,680 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:12:37,680 - app - INFO - ============================================================
+2026-02-05 13:12:37,681 - app - INFO - Environment: development
+2026-02-05 13:12:37,681 - app - INFO - Debug Mode: True
+2026-02-05 13:12:37,682 - app - INFO - Model Loaded: True
+2026-02-05 13:12:37,682 - app - INFO - ============================================================
+2026-02-05 13:12:37,682 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:12:37,682 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:12:37,682 - app - INFO - ============================================================
+2026-02-05 13:12:39,509 - app - INFO - ==================================================
+2026-02-05 13:12:39,510 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:12:39,510 - app - INFO - Environment: development
+2026-02-05 13:12:39,510 - app - INFO - Debug Mode: True
+2026-02-05 13:12:39,510 - app - INFO - Timestamp: 2026-02-05 13:12:39.510696
+2026-02-05 13:12:39,511 - app - INFO - ==================================================
+2026-02-05 13:12:40,415 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:12:40,415 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:12:40,415 - app - INFO -   - Features: 12
+2026-02-05 13:12:40,419 - app - INFO - ============================================================
+2026-02-05 13:12:40,419 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:12:40,419 - app - INFO - ============================================================
+2026-02-05 13:12:40,419 - app - INFO - Environment: development
+2026-02-05 13:12:40,420 - app - INFO - Debug Mode: True
+2026-02-05 13:12:40,420 - app - INFO - Model Loaded: True
+2026-02-05 13:12:40,420 - app - INFO - ============================================================
+2026-02-05 13:12:40,420 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:12:40,420 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:12:40,420 - app - INFO - ============================================================
+2026-02-05 13:12:43,352 - app - INFO - ==================================================
+2026-02-05 13:12:43,353 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:12:43,353 - app - INFO - Environment: development
+2026-02-05 13:12:43,353 - app - INFO - Debug Mode: True
+2026-02-05 13:12:43,353 - app - INFO - Timestamp: 2026-02-05 13:12:43.353135
+2026-02-05 13:12:43,354 - app - INFO - ==================================================
+2026-02-05 13:12:44,318 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:12:44,319 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:12:44,319 - app - INFO -   - Features: 12
+2026-02-05 13:12:44,322 - app - INFO - ============================================================
+2026-02-05 13:12:44,322 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:12:44,322 - app - INFO - ============================================================
+2026-02-05 13:12:44,322 - app - INFO - Environment: development
+2026-02-05 13:12:44,322 - app - INFO - Debug Mode: True
+2026-02-05 13:12:44,323 - app - INFO - Model Loaded: True
+2026-02-05 13:12:44,323 - app - INFO - ============================================================
+2026-02-05 13:12:44,323 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:12:44,323 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:12:44,323 - app - INFO - ============================================================
+2026-02-05 13:12:48,304 - app - INFO - ==================================================
+2026-02-05 13:12:48,305 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:12:48,305 - app - INFO - Environment: development
+2026-02-05 13:12:48,306 - app - INFO - Debug Mode: True
+2026-02-05 13:12:48,306 - app - INFO - Timestamp: 2026-02-05 13:12:48.306023
+2026-02-05 13:12:48,306 - app - INFO - ==================================================
+2026-02-05 13:12:49,308 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:12:49,309 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:12:49,309 - app - INFO -   - Features: 12
+2026-02-05 13:12:49,312 - app - INFO - ============================================================
+2026-02-05 13:12:49,312 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:12:49,312 - app - INFO - ============================================================
+2026-02-05 13:12:49,313 - app - INFO - Environment: development
+2026-02-05 13:12:49,313 - app - INFO - Debug Mode: True
+2026-02-05 13:12:49,313 - app - INFO - Model Loaded: True
+2026-02-05 13:12:49,313 - app - INFO - ============================================================
+2026-02-05 13:12:49,314 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:12:49,314 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:12:49,314 - app - INFO - ============================================================
+2026-02-05 13:12:53,270 - app - INFO - ==================================================
+2026-02-05 13:12:53,270 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:12:53,270 - app - INFO - Environment: development
+2026-02-05 13:12:53,271 - app - INFO - Debug Mode: True
+2026-02-05 13:12:53,271 - app - INFO - Timestamp: 2026-02-05 13:12:53.271430
+2026-02-05 13:12:53,271 - app - INFO - ==================================================
+2026-02-05 13:12:54,193 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:12:54,194 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:12:54,194 - app - INFO -   - Features: 12
+2026-02-05 13:12:54,196 - app - INFO - ============================================================
+2026-02-05 13:12:54,197 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:12:54,197 - app - INFO - ============================================================
+2026-02-05 13:12:54,197 - app - INFO - Environment: development
+2026-02-05 13:12:54,197 - app - INFO - Debug Mode: True
+2026-02-05 13:12:54,197 - app - INFO - Model Loaded: True
+2026-02-05 13:12:54,198 - app - INFO - ============================================================
+2026-02-05 13:12:54,198 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:12:54,198 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:12:54,198 - app - INFO - ============================================================
+2026-02-05 13:12:59,342 - app - ERROR - Error: PredictionError - only length-1 arrays can be converted to Python scalars
+2026-02-05 13:12:59,343 - app - ERROR - Context: Data: {'smoke': 0, 'height': 170, 'ap_hi': 130, 'weight': 75, 'alco': 0, 'ap_lo': 85, 'cholesterol': 1, 'gluc': 1, 'active': 1, 'gender': 1, 'age': 50}
+2026-02-05 13:13:13,698 - app - ERROR - Error: PredictionError - only length-1 arrays can be converted to Python scalars
+2026-02-05 13:13:13,699 - app - ERROR - Context: Data: {'smoke': 0, 'height': 170, 'ap_hi': 130, 'weight': 75, 'alco': 0, 'ap_lo': 85, 'cholesterol': 1, 'gluc': 1, 'active': 1, 'gender': 1, 'age': 50}
+2026-02-05 13:13:26,895 - app - INFO - ==================================================
+2026-02-05 13:13:26,895 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:13:26,895 - app - INFO - Environment: development
+2026-02-05 13:13:26,895 - app - INFO - Debug Mode: True
+2026-02-05 13:13:26,896 - app - INFO - Timestamp: 2026-02-05 13:13:26.896727
+2026-02-05 13:13:26,896 - app - INFO - ==================================================
+2026-02-05 13:13:27,869 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:13:27,869 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:13:27,870 - app - INFO -   - Features: 12
+2026-02-05 13:13:27,875 - app - INFO - ============================================================
+2026-02-05 13:13:27,876 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:13:27,876 - app - INFO - ============================================================
+2026-02-05 13:13:27,877 - app - INFO - Environment: development
+2026-02-05 13:13:27,877 - app - INFO - Debug Mode: True
+2026-02-05 13:13:27,877 - app - INFO - Model Loaded: True
+2026-02-05 13:13:27,878 - app - INFO - ============================================================
+2026-02-05 13:13:27,878 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:13:27,879 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:13:27,879 - app - INFO - ============================================================
+2026-02-05 13:13:31,839 - app - INFO - ==================================================
+2026-02-05 13:13:31,839 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:13:31,840 - app - INFO - Environment: development
+2026-02-05 13:13:31,840 - app - INFO - Debug Mode: True
+2026-02-05 13:13:31,840 - app - INFO - Timestamp: 2026-02-05 13:13:31.840808
+2026-02-05 13:13:31,840 - app - INFO - ==================================================
+2026-02-05 13:13:32,759 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:13:32,759 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:13:32,759 - app - INFO -   - Features: 12
+2026-02-05 13:13:32,763 - app - INFO - ============================================================
+2026-02-05 13:13:32,764 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:13:32,764 - app - INFO - ============================================================
+2026-02-05 13:13:32,764 - app - INFO - Environment: development
+2026-02-05 13:13:32,764 - app - INFO - Debug Mode: True
+2026-02-05 13:13:32,764 - app - INFO - Model Loaded: True
+2026-02-05 13:13:32,765 - app - INFO - ============================================================
+2026-02-05 13:13:32,765 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:13:32,765 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:13:32,765 - app - INFO - ============================================================
+2026-02-05 13:13:42,271 - app - ERROR - Error: PredictionError - only length-1 arrays can be converted to Python scalars
+2026-02-05 13:13:42,272 - app - ERROR - Context: Data: {'smoke': 0, 'height': 170, 'ap_hi': 130, 'weight': 75, 'alco': 0, 'ap_lo': 85, 'cholesterol': 1, 'gluc': 1, 'active': 1, 'gender': 1, 'age': 50}
+2026-02-05 13:13:50,545 - app - INFO - ==================================================
+2026-02-05 13:13:50,545 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:13:50,545 - app - INFO - Environment: development
+2026-02-05 13:13:50,545 - app - INFO - Debug Mode: True
+2026-02-05 13:13:50,546 - app - INFO - Timestamp: 2026-02-05 13:13:50.546149
+2026-02-05 13:13:50,546 - app - INFO - ==================================================
+2026-02-05 13:13:51,451 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:13:51,452 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:13:51,452 - app - INFO -   - Features: 12
+2026-02-05 13:13:51,455 - app - INFO - ============================================================
+2026-02-05 13:13:51,455 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:13:51,455 - app - INFO - ============================================================
+2026-02-05 13:13:51,455 - app - INFO - Environment: development
+2026-02-05 13:13:51,455 - app - INFO - Debug Mode: True
+2026-02-05 13:13:51,457 - app - INFO - Model Loaded: True
+2026-02-05 13:13:51,457 - app - INFO - ============================================================
+2026-02-05 13:13:51,457 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:13:51,457 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:13:51,457 - app - INFO - ============================================================
+2026-02-05 13:13:56,462 - app - INFO - ==================================================
+2026-02-05 13:13:56,463 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:13:56,463 - app - INFO - Environment: development
+2026-02-05 13:13:56,463 - app - INFO - Debug Mode: True
+2026-02-05 13:13:56,463 - app - INFO - Timestamp: 2026-02-05 13:13:56.463709
+2026-02-05 13:13:56,464 - app - INFO - ==================================================
+2026-02-05 13:13:57,332 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:13:57,333 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:13:57,333 - app - INFO -   - Features: 12
+2026-02-05 13:13:57,336 - app - INFO - ============================================================
+2026-02-05 13:13:57,337 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:13:57,337 - app - INFO - ============================================================
+2026-02-05 13:13:57,337 - app - INFO - Environment: development
+2026-02-05 13:13:57,337 - app - INFO - Debug Mode: True
+2026-02-05 13:13:57,339 - app - INFO - Model Loaded: True
+2026-02-05 13:13:57,339 - app - INFO - ============================================================
+2026-02-05 13:13:57,339 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:13:57,340 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:13:57,340 - app - INFO - ============================================================
+2026-02-05 13:13:59,357 - app - INFO - ==================================================
+2026-02-05 13:13:59,357 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:13:59,357 - app - INFO - Environment: development
+2026-02-05 13:13:59,358 - app - INFO - Debug Mode: True
+2026-02-05 13:13:59,358 - app - INFO - Timestamp: 2026-02-05 13:13:59.358415
+2026-02-05 13:13:59,358 - app - INFO - ==================================================
+2026-02-05 13:14:00,292 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:14:00,293 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:14:00,293 - app - INFO -   - Features: 12
+2026-02-05 13:14:00,296 - app - INFO - ============================================================
+2026-02-05 13:14:00,296 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:14:00,296 - app - INFO - ============================================================
+2026-02-05 13:14:00,296 - app - INFO - Environment: development
+2026-02-05 13:14:00,296 - app - INFO - Debug Mode: True
+2026-02-05 13:14:00,297 - app - INFO - Model Loaded: True
+2026-02-05 13:14:00,297 - app - INFO - ============================================================
+2026-02-05 13:14:00,297 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:14:00,297 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:14:00,297 - app - INFO - ============================================================
+2026-02-05 13:14:57,517 - app - ERROR - Error: PredictionError - only length-1 arrays can be converted to Python scalars
+2026-02-05 13:14:57,518 - app - ERROR - Context: Data: {'smoke': 0, 'height': 170, 'ap_hi': 130, 'weight': 75, 'alco': 0, 'ap_lo': 85, 'cholesterol': 1, 'gluc': 1, 'active': 1, 'gender': 1, 'age': 50}
+2026-02-05 13:15:31,983 - app - INFO - ==================================================
+2026-02-05 13:15:31,984 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:15:31,984 - app - INFO - Environment: development
+2026-02-05 13:15:31,984 - app - INFO - Debug Mode: True
+2026-02-05 13:15:31,984 - app - INFO - Timestamp: 2026-02-05 13:15:31.984500
+2026-02-05 13:15:31,984 - app - INFO - ==================================================
+2026-02-05 13:15:32,928 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:15:32,929 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:15:32,929 - app - INFO -   - Features: 12
+2026-02-05 13:15:32,932 - app - INFO - ============================================================
+2026-02-05 13:15:32,932 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:15:32,933 - app - INFO - ============================================================
+2026-02-05 13:15:32,933 - app - INFO - Environment: development
+2026-02-05 13:15:32,933 - app - INFO - Debug Mode: True
+2026-02-05 13:15:32,933 - app - INFO - Model Loaded: True
+2026-02-05 13:15:32,934 - app - INFO - ============================================================
+2026-02-05 13:15:32,934 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:15:32,934 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:15:32,934 - app - INFO - ============================================================
+2026-02-05 13:15:33,452 - app - INFO - ==================================================
+2026-02-05 13:15:33,453 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-05 13:15:33,453 - app - INFO - Environment: development
+2026-02-05 13:15:33,453 - app - INFO - Debug Mode: True
+2026-02-05 13:15:33,454 - app - INFO - Timestamp: 2026-02-05 13:15:33.453532
+2026-02-05 13:15:33,454 - app - INFO - ==================================================
+2026-02-05 13:15:34,365 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-05 13:15:34,365 - app - INFO -   - Model type: RandomForestClassifier
+2026-02-05 13:15:34,366 - app - INFO -   - Features: 12
+2026-02-05 13:15:34,368 - app - INFO - ============================================================
+2026-02-05 13:15:34,369 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-05 13:15:34,369 - app - INFO - ============================================================
+2026-02-05 13:15:34,369 - app - INFO - Environment: development
+2026-02-05 13:15:34,369 - app - INFO - Debug Mode: True
+2026-02-05 13:15:34,369 - app - INFO - Model Loaded: True
+2026-02-05 13:15:34,369 - app - INFO - ============================================================
+2026-02-05 13:15:34,370 - app - INFO - Server running at http://localhost:5000
+2026-02-05 13:15:34,370 - app - INFO - API Documentation at http://localhost:5000
+2026-02-05 13:15:34,370 - app - INFO - ============================================================
+2026-02-05 13:17:00,497 - app - DEBUG - GET / - Home page

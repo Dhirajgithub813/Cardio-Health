@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - CardioPredict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">
+                <h1>❤️ CardioPredict</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/predict">Predict</a></li>
+                <li><a href="/analytics" class="active">Analytics</a></li>
+                <li><a href="/results">Results</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="analytics-section">
+        <div class="container">
+            <h2>Disease Analytics & Statistics</h2>
+            <p class="subtitle">Comprehensive analysis of cardiovascular disease patterns</p>
+
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>Loading analytics...</p>
+            </div>
+
+            <div id="analyticsContent" style="display: none;">
+                <!-- Key Statistics -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalRecords">-</div>
+                        <div class="stat-label">Total Records</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="diseaseCount">-</div>
+                        <div class="stat-label">Disease Cases</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="healthyCount">-</div>
+                        <div class="stat-label">Healthy Cases</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="diseasePercentage">-</div>
+                        <div class="stat-label">Disease Rate</div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3>Disease Distribution</h3>
+                        <canvas id="diseaseChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Age Distribution</h3>
+                        <canvas id="ageChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Feature Statistics -->
+                <div class="features-stats">
+                    <h3>Feature Statistics</h3>
+                    <div class="stats-table">
+                        <div class="table-header">
+                            <div>Feature</div>
+                            <div>Min</div>
+                            <div>Max</div>
+                            <div>Average</div>
+                        </div>
+                        <div class="table-row">
+                            <div>Age (days)</div>
+                            <div id="ageMin">-</div>
+                            <div id="ageMax">-</div>
+                            <div id="ageMean">-</div>
+                        </div>
+                        <div class="table-row">
+                            <div>Weight (kg)</div>
+                            <div id="weightMin">-</div>
+                            <div id="weightMax">-</div>
+                            <div id="weightMean">-</div>
+                        </div>
+                        <div class="table-row">
+                            <div>Height (cm)</div>
+                            <div id="heightMin">-</div>
+                            <div id="heightMax">-</div>
+                            <div id="heightMean">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insights -->
+                <div class="insights-section">
+                    <h3>Key Insights</h3>
+                    <ul class="insights-list">
+                        <li>The dataset contains <span id="insightTotal">-</span> patient records</li>
+                        <li>Approximately <span id="insightPercent">-</span>% of patients have cardiovascular disease</li>
+                        <li>Average age in dataset: <span id="insightAge">-</span> years</li>
+                        <li>Average BMI: <span id="insightBMI">-</span> kg/m²</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="error-message" id="errorContainer" style="display: none;"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cardiovascular Disease Prediction System</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='analytics.js') }}"></script>
+</body>
+</html>
