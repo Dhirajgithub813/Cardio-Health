@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - CardioPredict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .docs-section {
+            padding: 60px 20px;
+            background: #f8f9fa;
+        }
+        .docs-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .docs-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+        }
+        .docs-header h1 {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+            font-weight: 700;
+        }
+        .docs-header p {
+            font-size: 1.1em;
+            color: #ecf0f1;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            font-weight: 500;
+        }
+        .docs-content {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: var(--text-color);
+        }
+        .docs-section-title {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        .docs-section-title:first-child {
+            margin-top: 0;
+        }
+        .docs-subsection {
+            margin-bottom: 30px;
+        }
+        .docs-subsection h3 {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+        .docs-subsection p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #f0f8ff;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 3px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .feature-list li:before {
+            content: "✓ ";
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .parameter-table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        .parameter-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .parameter-table tr:hover {
+            background: #f5f5f5;
+        }
+        .required {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .optional {
+            color: #27ae60;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">
+                <h1>❤️ CardioPredict</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/predict">Predict</a></li>
+                <li class="dropdown">
+                    <a href="/dashboard">Analytics & Results</a>
+                    <div class="dropdown-menu">
+                        <a href="/dashboard#analytics-section">Analytics</a>
+                        <a href="/dashboard#results-section">Results</a>
+                    </div>
+                </li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="docs-section">
+        <div class="docs-container">
+            <div class="docs-header">
+                <h1>📚 Documentation</h1>
+                <p>Complete guide to using CardioPredict</p>
+            </div>
+
+            <div class="docs-content">
+                <!-- Getting Started -->
+                <h2 class="docs-section-title">Getting Started</h2>
+                
+                <div class="docs-subsection">
+                    <h3>What is CardioPredict?</h3>
+                    <p>CardioPredict is an AI-powered cardiovascular disease prediction system that uses machine learning to assess your risk of cardiovascular disease based on health parameters. The system analyzes your health data and provides personalized risk assessments with recommendations.</p>
+                </div>
+
+                <div class="docs-subsection">
+                    <h3>Key Features</h3>
+                    <ul class="feature-list">
+                        <li>Real-time cardiovascular disease risk prediction</li>
+                        <li>Personalized health recommendations</li>
+                        <li>Visual risk assessment with charts</li>
+                        <li>Prediction history tracking</li>
+                        <li>Download predictions as PDF or CSV</li>
+                        <li>Mobile-friendly responsive design</li>
+                        <li>Privacy-focused local data storage</li>
+                        <li>Comprehensive analytics dashboard</li>
+                    </ul>
+                </div>
+
+                <!-- Using the Prediction Tool -->
+                <h2 class="docs-section-title">Using the Prediction Tool</h2>
+                
+                <div class="docs-subsection">
+                    <h3>Step 1: Navigate to Predict</h3>
+                    <p>Click on the "Predict" link in the main navigation menu to access the prediction form.</p>
+                </div>
+
+                <div class="docs-subsection">
+                    <h3>Step 2: Enter Patient Information (Optional)</h3>
+                    <p>Fill in optional patient details:</p>
+                    <table class="parameter-table">
+                        <tr>
+                            <th>Field</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                        </tr>
+                        <tr>
+                            <td>Patient Name</td>
+                            <td>Full name of the patient</td>
+                            <td>Text</td>
+                        </tr>
+                        <tr>
+                            <td>Father's Name</td>
+                            <td>Father's full name</td>
+                            <td>Text</td>
+                        </tr>
+                        <tr>
+                            <td>Blood Group</td>
+                            <td>ABO blood group (O+, A-, etc.)</td>
+                            <td>Dropdown</td>
+                        </tr>
+                        <tr>
+                            <td>Phone Numbers</td>
+                            <td>Primary and alternative contact</td>
+                            <td>Text</td>
+                        </tr>
+                        <tr>
+                            <td>Reference Doctor</td>
+                            <td>Referring physician's name</td>
+                            <td>Text</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="docs-subsection">
+                    <h3>Step 3: Enter Health Information (Required)</h3>
+                    <p>Fill in all required health parameters:</p>
+                    <table class="parameter-table">
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                            <th>Range</th>
+                            <th>Required</th>
+                        </tr>
+                        <tr>
+                            <td>Age</td>
+                            <td>Patient age in years</td>
+                            <td>1-120</td>
+                            <td><span class="required">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>Male or Female</td>
+                            <td>1 (M), 2 (F)</td>
+                            <td><span class="required">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td>Height</td>
+                            <td>Height in centimeters</td>
+                            <td>100-250</td>
+                            <td><span class="required">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>Weight in kilograms</td>
+                            <td>20-200</td>
+                            <td><span class="required">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td>Systolic BP (ap_hi)</td>
+                            <td>Systolic blood pressure in mmHg</td>
+                            <td>60-250</td>
+                            <td><span class="required">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td>Diastolic BP (ap_lo)</td>
+                            <td>Diastolic blood pressure in mmHg</td>
+                            <td>40-150</td>
+                            <td><span class="required">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td>Cholesterol</td>
+                            <td>Cholesterol level</td>
+                            <td>0=Normal, 1=Above, 2=Well Above, 3=High</td>
+                            <td><span class="required">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td>Glucose</td>
+                            <td>Glucose level</td>
+                            <td>0=Normal, 1=Above, 2=Well Above, 3=High</td>
+                            <td><span class="required">Yes</span></td>
+                        </tr>
+                        <tr>
+                            <td>Smoker</td>
+                            <td>Current smoking status</td>
+                            <td>0=No, 1=Yes</td>
+                            <td><span class="optional">No</span></td>
+                        </tr>
+                        <tr>
+                            <td>Alcohol</td>
+                            <td>Alcohol consumption</td>
+                            <td>0=No, 1=Yes</td>
+                            <td><span class="optional">No</span></td>
+                        </tr>
+                        <tr>
+                            <td>Physical Activity</td>
+                            <td>Regular physical activity status</td>
+                            <td>0=No, 1=Yes</td>
+                            <td><span class="optional">No</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="docs-subsection">
+                    <h3>Step 4: Get Prediction</h3>
+                    <p>Click the "Get Prediction" button. The system will analyze your data and display:</p>
+                    <ul class="feature-list">
+                        <li>Risk Assessment (Low Risk, Moderate Risk, High Risk)</li>
+                        <li>Disease Probability Percentage</li>
+                        <li>Visual Risk Chart</li>
+                        <li>Personalized Health Recommendations</li>
+                        <li>Unique Prediction ID</li>
+                    </ul>
+                </div>
+
+                <!-- Understanding Results -->
+                <h2 class="docs-section-title">Understanding Your Results</h2>
+                
+                <div class="docs-subsection">
+                    <h3>Risk Assessment Levels</h3>
+                    <p><strong>Low Risk (0-30%):</strong> Your cardiovascular risk is low. Maintain healthy habits with regular exercise and balanced diet.</p>
+                    <p><strong>Moderate Risk (30-60%):</strong> You have moderate cardiovascular risk. Consult with a healthcare provider and consider lifestyle modifications.</p>
+                    <p><strong>High Risk (60%+):</strong> You have elevated cardiovascular risk. Schedule a comprehensive evaluation with a healthcare professional immediately.</p>
+                </div>
+
+                <div class="docs-subsection">
+                    <h3>What Do the Percentages Mean?</h3>
+                    <p>The disease probability percentage represents the model's confidence level that you may have cardiovascular disease based on the input parameters. This is NOT a medical diagnosis—consult a doctor for proper evaluation.</p>
+                </div>
+
+                <!-- API Information -->
+                <h2 class="docs-section-title">API Documentation</h2>
+                
+                <div class="docs-subsection">
+                    <h3>Prediction Endpoint</h3>
+                    <p><strong>POST /api/predict</strong></p>
+                    <p>Make a cardiovascular disease prediction.</p>
+                    
+                    <h4>Request Body:</h4>
+                    <div class="code-block">
+{
+  "age": 50,
+  "gender": 1,
+  "height": 170,
+  "weight": 75,
+  "ap_hi": 120,
+  "ap_lo": 80,
+  "cholesterol": 1,
+  "gluc": 1,
+  "smoke": 0,
+  "alco": 0,
+  "active": 1,
+  "patientName": "John Doe",
+  "fatherName": "James",
+  "bloodGroup": "O+"
+}
+                    </div>
+
+                    <h4>Response:</h4>
+                    <div class="code-block">
+{
+  "prediction_id": "a1b2c3d4",
+  "prediction": 0,
+  "has_disease": false,
+  "disease_probability": 0.25,
+  "healthy_probability": 0.75,
+  "risk_percentage": 25.0,
+  "risk_level": "Low Risk",
+  "color": "green",
+  "timestamp": "2024-02-06T10:30:00"
+}
+                    </div>
+                </div>
+
+                <div class="docs-subsection">
+                    <h3>Health Check Endpoint</h3>
+                    <p><strong>GET /api/health</strong></p>
+                    <p>Check if the API is running and model is loaded.</p>
+                </div>
+
+                <!-- Data Storage -->
+                <h2 class="docs-section-title">Data Storage & Privacy</h2>
+                
+                <div class="docs-subsection">
+                    <h3>Local Storage</h3>
+                    <p>CardioPredict stores all prediction data locally in your browser using localStorage. This means:</p>
+                    <ul class="feature-list">
+                        <li>No data is sent to external servers</li>
+                        <li>You have complete control over your health information</li>
+                        <li>Data persists across browser sessions</li>
+                        <li>You can clear data by clearing browser cache</li>
+                    </ul>
+                </div>
+
+                <!-- Troubleshooting -->
+                <h2 class="docs-section-title">Troubleshooting</h2>
+                
+                <div class="docs-subsection">
+                    <h3>Common Issues</h3>
+                    <p><strong>Issue: Form submission fails</strong><br>
+                    Solution: Check that all required fields are filled and values are within valid ranges.</p>
+                    
+                    <p><strong>Issue: Results not displaying</strong><br>
+                    Solution: Ensure JavaScript is enabled in your browser. Try refreshing the page.</p>
+                    
+                    <p><strong>Issue: Predictions not saved</strong><br>
+                    Solution: Check if localStorage is enabled in your browser settings.</p>
+                </div>
+
+                <!-- Support -->
+                <h2 class="docs-section-title">Support</h2>
+                
+                <div class="docs-subsection">
+                    <p>For additional help, please contact us:</p>
+                    <p>📧 <strong>Email:</strong> support@cardiopredict.com<br>
+                    📞 <strong>Phone:</strong> +1-800-CARDIO-1<br>
+                    📍 <strong>Address:</strong> Medical Plaza, Suite 500, Health City, HC 12345, USA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>❤️ CardioPredict</h4>
+                    <p>AI-Powered Cardiovascular Disease Prediction System</p>
+                    <p class="footer-disclaimer">For educational & informational purposes only</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/predict">Predict</a></li>
+                        <li><a href="/dashboard">Analytics & Results</a></li>
+                        <li><a href="/about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <p class="footer-contact">
+                        <strong>Email:</strong> <a href="mailto:support@cardiopredict.com">support@cardiopredict.com</a>
+                    </p>
+                    <p class="footer-contact">
+                        <strong>Phone:</strong> <a href="tel:+1-800-CARDIO-1">+1-800-CARDIO-1</a>
+                    </p>
+                    <p class="footer-contact">
+                        <strong>Address:</strong><br>Medical Plaza, Suite 500<br>Health City, HC 12345, USA
+                    </p>
+                </div>
+                <div class="footer-column">
+                    <h4>Support & Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/documentation">Documentation</a></li>
+                        <li><a href="/feedback">Feedback</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CardioPredict - Cardiovascular Disease Prediction System. All rights reserved.</p>
+                <p class="footer-credits">Built with ❤️ for healthcare innovation | <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a> | <a href="mailto:support@cardiopredict.com">Contact</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

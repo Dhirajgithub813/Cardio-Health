@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Feedback - CardioPredict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .feedback-section {
+            padding: 60px 20px;
+            background: #f8f9fa;
+        }
+        .feedback-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .feedback-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+        }
+        .feedback-header h1 {
+            font-size: 2.2em;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+            font-weight: 700;
+        }
+        .feedback-header p {
+            font-size: 1.1em;
+            color: #ecf0f1;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            font-weight: 500;
+        }
+        .feedback-form-wrapper {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            color: var(--text-color);
+        }
+        .feedback-intro {
+            background: #e8f4f8;
+            padding: 20px;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 5px;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 1.05em;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(255, 107, 107, 0.3);
+        }
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        .rating-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .star-rating {
+            display: flex;
+            gap: 10px;
+            font-size: 2.5em;
+            cursor: pointer;
+        }
+        .star {
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            color: #ddd;
+        }
+        .star:hover,
+        .star.active {
+            color: #ffc107;
+            transform: scale(1.2);
+        }
+        .rating-label {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1em;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gaps: 10px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .checkbox-item label {
+            margin: 0;
+            font-weight: normal;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .form-section-divider {
+            margin: 40px 0 30px 0;
+            padding: 20px 0;
+            border-top: 2px solid var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .form-section-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .btn-submit {
+            flex: 1;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        .btn-reset {
+            padding: 12px 30px;
+            background: #95a5a6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-reset:hover {
+            background: #7f8c8d;
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            display: none;
+            border: 1px solid #c3e6cb;
+        }
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            display: none;
+            border: 1px solid #f5c6cb;
+        }
+        .feedback-recent {
+            margin-top: 60px;
+            padding: 30px;
+            background: #f0f8ff;
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
+        }
+        .feedback-recent h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+        .feedback-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid var(--primary-color);
+        }
+        .feedback-card-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .feedback-card-name {
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 1.05em;
+        }
+        .feedback-card-rating {
+            color: #ffc107;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        .feedback-card-text {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .feedback-card-date {
+            font-size: 0.9em;
+            color: #95a5a6;
+        }
+        .no-feedback-message {
+            text-align: center;
+            color: #7f8c8d;
+            padding: 30px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">
+                <h1>❤️ CardioPredict</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/predict">Predict</a></li>
+                <li class="dropdown">
+                    <a href="/dashboard">Analytics & Results</a>
+                    <div class="dropdown-menu">
+                        <a href="/dashboard#analytics-section">Analytics</a>
+                        <a href="/dashboard#results-section">Results</a>
+                    </div>
+                </li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="feedback-section">
+        <div class="feedback-container">
+            <div class="feedback-header">
+                <h1>💬 Share Your Feedback</h1>
+                <p>Help us improve our cardiovascular disease prediction service</p>
+            </div>
+
+            <div class="feedback-form-wrapper">
+                <div class="success-message" id="successMessage">
+                    ✅ Thank you! Your feedback has been submitted successfully.
+                </div>
+                <div class="error-message" id="errorMessage"></div>
+
+                <div class="feedback-intro">
+                    <strong>📋 We Value Your Input</strong><br>
+                    Your feedback helps us improve our service quality and patient experience. Please take a few minutes to share your thoughts about your experience with CardioPredict.
+                </div>
+
+                <form id="feedbackForm" class="feedback-form">
+                    <!-- Patient Information Section -->
+                    <div class="form-section-title">👤 Your Information</div>
+
+                    <div class="form-group">
+                        <label for="feedbackName">Full Name (Optional)</label>
+                        <input type="text" id="feedbackName" name="feedbackName" placeholder="Enter your name">
+                        <small>Leave blank to submit anonymously</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedbackEmail">Email Address (Optional)</label>
+                        <input type="email" id="feedbackEmail" name="feedbackEmail" placeholder="your.email@example.com">
+                        <small>We may use this to follow up on your feedback</small>
+                    </div>
+
+                    <!-- Rating Section -->
+                    <div class="form-section-divider"></div>
+                    <div class="form-section-title">⭐ Service Rating</div>
+
+                    <div class="form-group">
+                        <label>Overall Service Rating</label>
+                        <div class="rating-group">
+                            <div class="star-rating" id="overallRating">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                            <span class="rating-label" id="overallRatingLabel">Not rated yet</span>
+                        </div>
+                        <input type="hidden" id="overallRatingValue" name="overallRatingValue" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Prediction Accuracy Rating</label>
+                        <div class="rating-group">
+                            <div class="star-rating" id="accuracyRating">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                            <span class="rating-label" id="accuracyRatingLabel">Not rated yet</span>
+                        </div>
+                        <input type="hidden" id="accuracyRatingValue" name="accuracyRatingValue" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ease of Use Rating</label>
+                        <div class="rating-group">
+                            <div class="star-rating" id="easeRating">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                            <span class="rating-label" id="easeRatingLabel">Not rated yet</span>
+                        </div>
+                        <input type="hidden" id="easeRatingValue" name="easeRatingValue" value="">
+                    </div>
+
+                    <!-- Experience Section -->
+                    <div class="form-section-divider"></div>
+                    <div class="form-section-title">📝 Your Experience</div>
+
+                    <div class="form-group">
+                        <label>Which aspects were most helpful? (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="aspectAccuracy" name="aspects" value="prediction_accuracy">
+                                <label for="aspectAccuracy">Accurate predictions</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="aspectUI" name="aspects" value="user_interface">
+                                <label for="aspectUI">User-friendly interface</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="aspectSpeed" name="aspects" value="quick_results">
+                                <label for="aspectSpeed">Quick results</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="aspectSupport" name="aspects" value="support">
+                                <label for="aspectSupport">Good support & documentation</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="aspectEducation" name="aspects" value="educational">
+                                <label for="aspectEducation">Educational information</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Areas for improvement (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="improveAccuracy" name="improvements" value="improve_accuracy">
+                                <label for="improveAccuracy">Improve prediction accuracy</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="improveUI" name="improvements" value="improve_ui">
+                                <label for="improveUI">Better user interface</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="improveSpeed" name="improvements" value="improve_speed">
+                                <label for="improveSpeed">Faster processing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="improveMobile" name="improvements" value="mobile_app">
+                                <label for="improveMobile">Mobile app version</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="improveFeatures" name="improvements" value="more_features">
+                                <label for="improveFeatures">More advanced features</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div class="form-section-divider"></div>
+                    <div class="form-section-title">💭 Additional Comments</div>
+
+                    <div class="form-group">
+                        <label for="feedbackComments">Your Detailed Feedback</label>
+                        <textarea id="feedbackComments" name="feedbackComments" class="feedback-textarea" rows="6" placeholder="Please share any additional comments, suggestions, or concerns about your experience with CardioPredict..."></textarea>
+                        <small>Be as detailed as you'd like - your feedback is valuable to us</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recommendationLikely">
+                            <input type="checkbox" id="recommendationLikely" name="recommendationLikely">
+                            Would you recommend CardioPredict to others?
+                        </label>
+                    </div>
+
+                    <!-- Submission Section -->
+                    <div class="button-group">
+                        <button type="submit" class="btn-submit">✉️ Submit Feedback</button>
+                        <button type="reset" class="btn-reset">🔄 Clear Form</button>
+                    </div>
+                </form>
+
+                <!-- Recent Feedback Display -->
+                <div class="feedback-recent">
+                    <h3>📢 Recent Feedback from Patients</h3>
+                    <div id="recentFeedbackContainer">
+                        <div class="no-feedback-message">No feedback submissions yet. Be the first to share your thoughts!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>❤️ CardioPredict</h4>
+                    <p>AI-Powered Cardiovascular Disease Prediction System</p>
+                    <p class="footer-disclaimer">For educational & informational purposes only</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/predict">Predict</a></li>
+                        <li><a href="/dashboard">Analytics & Results</a></li>
+                        <li><a href="/about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <p class="footer-contact">
+                        <strong>Email:</strong> <a href="mailto:support@cardiopredict.com">support@cardiopredict.com</a>
+                    </p>
+                    <p class="footer-contact">
+                        <strong>Phone:</strong> <a href="tel:+1-800-CARDIO-1">+1-800-CARDIO-1</a>
+                    </p>
+                    <p class="footer-contact">
+                        <strong>Address:</strong><br>Medical Plaza, Suite 500<br>Health City, HC 12345, USA
+                    </p>
+                </div>
+                <div class="footer-column">
+                    <h4>Support & Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/documentation">Documentation</a></li>
+                        <li><a href="/feedback">Feedback</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CardioPredict - Cardiovascular Disease Prediction System. All rights reserved.</p>
+                <p class="footer-credits">Built with ❤️ for healthcare innovation | <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a> | <a href="mailto:support@cardiopredict.com">Contact</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const feedbackForm = document.getElementById('feedbackForm');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Star rating functionality
+            initializeStarRating('overallRating', 'overallRatingValue', 'overallRatingLabel');
+            initializeStarRating('accuracyRating', 'accuracyRatingValue', 'accuracyRatingLabel');
+            initializeStarRating('easeRating', 'easeRatingValue', 'easeRatingLabel');
+
+            function initializeStarRating(ratingsContainer, hiddenInput, labelElement) {
+                const container = document.getElementById(ratingsContainer);
+                const input = document.getElementById(hiddenInput);
+                const label = document.getElementById(labelElement);
+                const stars = container.querySelectorAll('.star');
+
+                stars.forEach(star => {
+                    star.addEventListener('click', function() {
+                        const value = this.dataset.value;
+                        input.value = value;
+                        
+                        stars.forEach(s => s.classList.remove('active'));
+                        for (let i = 0; i < value; i++) {
+                            stars[i].classList.add('active');
+                        }
+                        
+                        const labels = {
+                            '1': '⭐ Poor',
+                            '2': '⭐⭐ Fair',
+                            '3': '⭐⭐⭐ Good',
+                            '4': '⭐⭐⭐⭐ Very Good',
+                            '5': '⭐⭐⭐⭐⭐ Excellent'
+                        };
+                        label.textContent = labels[value];
+                    });
+
+                    star.addEventListener('mouseenter', function() {
+                        const hoverValue = this.dataset.value;
+                        stars.forEach(s => s.classList.remove('active'));
+                        for (let i = 0; i < hoverValue; i++) {
+                            stars[i].classList.add('active');
+                        }
+                    });
+                });
+
+                container.addEventListener('mouseleave', function() {
+                    if (input.value) {
+                        stars.forEach(s => s.classList.remove('active'));
+                        for (let i = 0; i < input.value; i++) {
+                            stars[i].classList.add('active');
+                        }
+                    } else {
+                        stars.forEach(s => s.classList.remove('active'));
+                    }
+                });
+            }
+
+            // Form submission
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Validate at least one rating
+                const rating1 = document.getElementById('overallRatingValue').value;
+                const rating2 = document.getElementById('accuracyRatingValue').value;
+                const rating3 = document.getElementById('easeRatingValue').value;
+
+                if (!rating1 || !rating2 || !rating3) {
+                    errorMessage.textContent = '❌ Please provide all three ratings';
+                    errorMessage.style.display = 'block';
+                    successMessage.style.display = 'none';
+                    return;
+                }
+
+                // Collect form data
+                const feedbackData = {
+                    feedback_id: 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                    name: document.getElementById('feedbackName').value || 'Anonymous',
+                    email: document.getElementById('feedbackEmail').value || '',
+                    overall_rating: rating1,
+                    accuracy_rating: rating2,
+                    ease_rating: rating3,
+                    aspects: Array.from(document.querySelectorAll('input[name="aspects"]:checked')).map(x => x.value),
+                    improvements: Array.from(document.querySelectorAll('input[name="improvements"]:checked')).map(x => x.value),
+                    comments: document.getElementById('feedbackComments').value,
+                    would_recommend: document.getElementById('recommendationLikely').checked,
+                    submitted_at: new Date().toLocaleString(),
+                    timestamp: Date.now()
+                };
+
+                // Store feedback in localStorage
+                let allFeedback = JSON.parse(localStorage.getItem('cardio_feedback') || '[]');
+                allFeedback.unshift(feedbackData);
+                
+                // Keep only last 50 feedbacks
+                if (allFeedback.length > 50) {
+                    allFeedback = allFeedback.slice(0, 50);
+                }
+                
+                localStorage.setItem('cardio_feedback', JSON.stringify(allFeedback));
+
+                // Show success message
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                feedbackForm.reset();
+
+                // Clear ratings display
+                document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.rating-label').forEach(label => label.textContent = 'Not rated yet');
+                document.querySelectorAll('input[type="hidden"][name$="Value"]').forEach(input => input.value = '');
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+
+                // Reload feedback display
+                loadRecentFeedback();
+            });
+
+            // Load and display recent feedback
+            function loadRecentFeedback() {
+                let allFeedback = JSON.parse(localStorage.getItem('cardio_feedback') || '[]');
+                const container = document.getElementById('recentFeedbackContainer');
+
+                if (allFeedback.length === 0) {
+                    container.innerHTML = '<div class="no-feedback-message">No feedback submissions yet. Be the first to share your thoughts!</div>';
+                    return;
+                }
+
+                // Show only the 5 most recent
+                const recentFeedback = allFeedback.slice(0, 5);
+                const feedbackHTML = recentFeedback.map(fb => `
+                    <div class="feedback-card">
+                        <div class="feedback-card-header">
+                            <div>
+                                <div class="feedback-card-name">${fb.name}</div>
+                                <div class="feedback-card-date">${fb.submitted_at}</div>
+                            </div>
+                            <div class="feedback-card-rating">
+                                ${fb.would_recommend ? '👍 Would Recommend' : ''}
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <span style="color: #ffc107; font-weight: 600;">Overall: ${'⭐'.repeat(fb.overall_rating)}</span>
+                            <span style="margin-left: 20px; color: #666;">Accuracy: ${'⭐'.repeat(fb.accuracy_rating)}</span>
+                            <span style="margin-left: 20px; color: #666;">Ease: ${'⭐'.repeat(fb.ease_rating)}</span>
+                        </div>
+                        ${fb.comments ? `<div class="feedback-card-text">"${fb.comments}"</div>` : ''}
+                    </div>
+                `).join('');
+
+                container.innerHTML = feedbackHTML;
+            }
+
+            // Load feedback on page load
+            loadRecentFeedback();
+        });
+    </script>
+</body>
+</html>

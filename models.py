@@ -10,7 +10,9 @@ class PredictionRecord:
     
     def __init__(self, prediction_id, prediction, probability, risk_percentage, 
                  risk_level, color, age_days, age_years, gender, height, weight,
-                 ap_hi, ap_lo, cholesterol, gluc, smoke, alco, active):
+                 ap_hi, ap_lo, cholesterol, gluc, smoke, alco, active,
+                 patient_name=None, father_name=None, blood_group=None, 
+                 phone_number=None, alt_phone_number=None, doctor_name=None):
         self.id = prediction_id
         self.prediction = prediction
         self.disease_probability = probability[1] if isinstance(probability, (list, tuple)) else probability
@@ -30,6 +32,13 @@ class PredictionRecord:
         self.smoke = smoke
         self.alco = alco
         self.active = active
+        # Patient Information Fields
+        self.patient_name = patient_name
+        self.father_name = father_name
+        self.blood_group = blood_group
+        self.phone_number = phone_number
+        self.alt_phone_number = alt_phone_number
+        self.doctor_name = doctor_name
         self.timestamp = datetime.now().isoformat()
         self.status = 'completed'
     
@@ -56,6 +65,12 @@ class PredictionRecord:
             'smoke': self.smoke,
             'alco': self.alco,
             'active': self.active,
+            'patient_name': self.patient_name,
+            'father_name': self.father_name,
+            'blood_group': self.blood_group,
+            'phone_number': self.phone_number,
+            'alt_phone_number': self.alt_phone_number,
+            'doctor_name': self.doctor_name,
             'timestamp': self.timestamp,
             'status': self.status
         }

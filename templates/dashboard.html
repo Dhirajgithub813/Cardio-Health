@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics & Results - CardioPredict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">
+                <h1>❤️ CardioPredict</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/predict">Predict</a></li>
+                <li class="dropdown">
+                    <a href="/dashboard" class="active">Analytics & Results</a>
+                    <div class="dropdown-menu">
+                        <a href="#analytics-section">Analytics</a>
+                        <a href="#results-section">Results</a>
+                    </div>
+                </li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard-section">
+        <div class="container">
+            <h1>📊 Analytics & Results</h1>
+            <p class="subtitle">Analytics, Statistics & Prediction History</p>
+
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>Loading dashboard...</p>
+            </div>
+
+            <div id="dashboardContent" style="display: none;">
+
+                <!-- =================== RESULTS SECTION =================== -->
+                <section id="results-section" class="dashboard-part">
+                    <h2>📈 Your Prediction Results</h2>
+                    
+                    <!-- Prediction Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalPredictions">0</div>
+                            <div class="stat-label">Total Predictions</div>
+                        </div>
+                        <div class="stat-card high-risk">
+                            <div class="stat-value" id="highRiskCount">0</div>
+                            <div class="stat-label">High Risk</div>
+                        </div>
+                        <div class="stat-card moderate-risk">
+                            <div class="stat-value" id="moderateRiskCount">0</div>
+                            <div class="stat-label">Moderate Risk</div>
+                        </div>
+                        <div class="stat-card low-risk">
+                            <div class="stat-value" id="lowRiskCount">0</div>
+                            <div class="stat-label">Low Risk</div>
+                        </div>
+                    </div>
+
+                    <!-- Your Predictions Statistics -->
+                    <div class="chart-row">
+                        <div class="chart-container">
+                            <h3>Risk Distribution</h3>
+                            <canvas id="riskDistributionChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Disease Status</h3>
+                            <canvas id="diseaseStatusChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Prediction Details Stats -->
+                    <div class="detailed-stats">
+                        <h3>Your Prediction Statistics</h3>
+                        <div class="stats-table">
+                            <div class="table-header">
+                                <div>Metric</div>
+                                <div>Value</div>
+                            </div>
+                            <div class="table-row">
+                                <div>With Disease</div>
+                                <div id="yourDiseaseCount">-</div>
+                            </div>
+                            <div class="table-row">
+                                <div>Without Disease</div>
+                                <div id="yourHealthyCount">-</div>
+                            </div>
+                            <div class="table-row">
+                                <div>Disease Rate</div>
+                                <div id="yourDiseaseRate">-</div>
+                            </div>
+                            <div class="table-row">
+                                <div>Avg Risk %</div>
+                                <div id="avgRisk">-</div>
+                            </div>
+                            <div class="table-row">
+                                <div>Avg Age (years)</div>
+                                <div id="avgAge">-</div>
+                            </div>
+                            <div class="table-row">
+                                <div>Avg Weight (kg)</div>
+                                <div id="avgWeight">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Predictions Table -->
+                    <div class="prediction-history">
+                        <h3>📋 Recent Predictions</h3>
+                        <div class="history-controls">
+                            <input type="text" id="searchPredictions" class="search-input" placeholder="Search by patient name...">
+                            <div class="button-group">
+                                <button id="loadMoreBtn" class="btn btn-secondary">Load More</button>
+                                <button id="clearHistoryBtn" class="btn btn-warning">⚠️ Clear History</button>
+                            </div>
+                        </div>
+                        <div class="history-table-wrapper">
+                            <table class="history-table">
+                                <thead>
+                                    <tr>
+                                        <th>Patient</th>
+                                        <th>Date/Time</th>
+                                        <th>Age</th>
+                                        <th>Risk %</th>
+                                        <th>Risk Level</th>
+                                        <th>Disease</th>
+                                        <th>BP</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="predictionTableBody">
+                                    <tr><td colspan="8" style="text-align: center; padding: 20px;">No predictions yet</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =================== ANALYTICS SECTION =================== -->
+                <section id="analytics-section" class="dashboard-part">
+                    <h2>📊 Dataset Analytics</h2>
+                    
+                    <!-- Key Statistics -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalRecords">-</div>
+                            <div class="stat-label">Total Dataset Records</div>
+                        </div>
+                        <div class="stat-card disease">
+                            <div class="stat-value" id="diseaseCount">-</div>
+                            <div class="stat-label">Disease Cases</div>
+                        </div>
+                        <div class="stat-card healthy">
+                            <div class="stat-value" id="healthyCount">-</div>
+                            <div class="stat-label">Healthy Cases</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="diseasePercentage">-</div>
+                            <div class="stat-label">Disease Rate</div>
+                        </div>
+                    </div>
+
+                    <!-- Dataset Charts -->
+                    <div class="chart-row">
+                        <div class="chart-container">
+                            <h3>Disease Distribution</h3>
+                            <canvas id="diseaseChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Age Distribution</h3>
+                            <canvas id="ageChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Feature Statistics -->
+                    <div class="features-stats">
+                        <h3>Dataset Feature Statistics</h3>
+                        <div class="stats-table">
+                            <div class="table-header">
+                                <div>Feature</div>
+                                <div>Min</div>
+                                <div>Max</div>
+                                <div>Average</div>
+                            </div>
+                            <div class="table-row">
+                                <div>Age (days)</div>
+                                <div id="ageMin">-</div>
+                                <div id="ageMax">-</div>
+                                <div id="ageMean">-</div>
+                            </div>
+                            <div class="table-row">
+                                <div>Weight (kg)</div>
+                                <div id="weightMin">-</div>
+                                <div id="weightMax">-</div>
+                                <div id="weightMean">-</div>
+                            </div>
+                            <div class="table-row">
+                                <div>Height (cm)</div>
+                                <div id="heightMin">-</div>
+                                <div id="heightMax">-</div>
+                                <div id="heightMean">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Insights -->
+                    <div class="insights-section">
+                        <h3>💡 Key Insights</h3>
+                        <ul class="insights-list">
+                            <li>The dataset contains <strong id="insightTotal">-</strong> patient records</li>
+                            <li>Approximately <strong id="insightPercent">-</strong>% of patients have cardiovascular disease</li>
+                            <li>Average age in dataset: <strong id="insightAge">-</strong> years</li>
+                            <li>Average BMI: <strong id="insightBMI">-</strong> kg/m²</li>
+                            <li>You've made <strong id="insightPredictions">0</strong> predictions so far</li>
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="error-message" id="errorContainer" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- Modal for Prediction Details -->
+    <div id="detailsModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Prediction Details</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Details will be inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal()">Close</button>
+                <button class="btn btn-secondary" id="downloadPdfBtn">📥 Download PDF</button>
+                <button class="btn btn-secondary" id="downloadCsvBtn">📊 Download CSV</button>
+                <button class="btn btn-secondary" id="printBtn">🖨️ Print</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+            <!-- Footer Content -->
+            <div class="footer-content">
+                <!-- About Section -->
+                <div class="footer-column">
+                    <h4>❤️ CardioPredict</h4>
+                    <p>AI-Powered Cardiovascular Disease Prediction System</p>
+                    <p class="footer-disclaimer">For educational & informational purposes only</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/predict">Predict</a></li>
+                        <li><a href="/dashboard">Analytics & Results</a></li>
+                        <li><a href="/about">About</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <p class="footer-contact">
+                        <strong>Email:</strong> <a href="mailto:support@cardiopredict.com">support@cardiopredict.com</a>
+                    </p>
+                    <p class="footer-contact">
+                        <strong>Phone:</strong> <a href="tel:+1-800-CARDIO-1">+1-800-CARDIO-1</a>
+                    </p>
+                    <p class="footer-contact">
+                        <strong>Address:</strong><br>Medical Plaza, Suite 500<br>Health City, HC 12345, USA
+                    </p>
+                </div>
+
+                <!-- Support -->
+                <div class="footer-column">
+                    <h4>Support & Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/documentation">Documentation</a></li>
+                        <li><a href="/feedback">Feedback</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 CardioPredict - Cardiovascular Disease Prediction System. All rights reserved.</p>
+                <p class="footer-credits">Built with ❤️ for healthcare innovation | <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a> | <a href="mailto:support@cardiopredict.com">Contact</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='analytics.js') }}"></script>
+    <script src="{{ url_for('static', filename='predict.js') }}"></script>
+    <script src="{{ url_for('static', filename='results.js') }}"></script>
+    <script>
+        // Dashboard - Combined Analytics & Results
+        document.addEventListener('DOMContentLoaded', async function() {
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const dashboardContent = document.getElementById('dashboardContent');
+            const errorContainer = document.getElementById('errorContainer');
+
+            try {
+                // Load both analytics and results data
+                await Promise.all([
+                    loadAnalyticsData(),
+                    loadResultsData()
+                ]);
+
+                loadingSpinner.style.display = 'none';
+                dashboardContent.style.display = 'block';
+
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                errorContainer.textContent = '❌ Error: ' + error.message;
+                errorContainer.style.display = 'block';
+                loadingSpinner.style.display = 'none';
+            }
+
+            // Search functionality
+            document.getElementById('searchPredictions').addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                const rows = document.querySelectorAll('#predictionTableBody tr');
+                
+                rows.forEach(row => {
+                    const patientName = row.querySelector('td')?.textContent.toLowerCase() || '';
+                    row.style.display = patientName.includes(searchTerm) ? '' : 'none';
+                });
+            });
+
+            // Load more button
+            document.getElementById('loadMoreBtn').addEventListener('click', async function() {
+                const table = document.getElementById('predictionTableBody');
+                const currentRows = table.querySelectorAll('tr').length;
+                
+                const predictions = JSON.parse(localStorage.getItem('cardio_predictions')) || [];
+                const toLoad = predictions.slice(currentRows, currentRows + 10);
+                
+                toLoad.forEach(pred => {
+                    addRowToTable(pred);
+                });
+                
+                if (currentRows + toLoad.length >= predictions.length) {
+                    document.getElementById('loadMoreBtn').style.display = 'none';
+                }
+            });
+
+            // Clear history button
+            document.getElementById('clearHistoryBtn').addEventListener('click', function() {
+                if (confirm('⚠️ Are you sure you want to clear ALL prediction history? This cannot be undone.')) {
+                    localStorage.removeItem('cardio_predictions');
+                    location.reload();
+                }
+            });
+        });
+
+        // Load Analytics Data
+        async function loadAnalyticsData() {
+            try {
+                const response = await fetch('/api/analytics');
+                const data = await response.json();
+
+                // Update stat cards
+                document.getElementById('totalRecords').textContent = data.total_records.toLocaleString();
+                document.getElementById('diseaseCount').textContent = data.disease_count.toLocaleString();
+                document.getElementById('healthyCount').textContent = data.healthy_count.toLocaleString();
+                document.getElementById('diseasePercentage').textContent = data.disease_percentage + '%';
+
+                // Update feature stats
+                document.getElementById('ageMin').textContent = Math.round(data.age_stats.min);
+                document.getElementById('ageMax').textContent = Math.round(data.age_stats.max);
+                document.getElementById('ageMean').textContent = Math.round(data.age_stats.mean);
+
+                document.getElementById('weightMin').textContent = Math.round(data.weight_stats.min * 10) / 10;
+                document.getElementById('weightMax').textContent = Math.round(data.weight_stats.max * 10) / 10;
+                document.getElementById('weightMean').textContent = Math.round(data.weight_stats.mean * 10) / 10;
+
+                document.getElementById('heightMin').textContent = Math.round(data.height_stats.min);
+                document.getElementById('heightMax').textContent = Math.round(data.height_stats.max);
+                document.getElementById('heightMean').textContent = Math.round(data.height_stats.mean);
+
+                // Update insights
+                const ageYears = Math.round(data.age_stats.mean / 365);
+                const bmi = Math.round((data.weight_stats.mean / ((data.height_stats.mean / 100) ** 2)) * 10) / 10;
+                
+                document.getElementById('insightTotal').textContent = data.total_records.toLocaleString();
+                document.getElementById('insightPercent').textContent = data.disease_percentage;
+                document.getElementById('insightAge').textContent = ageYears;
+                document.getElementById('insightBMI').textContent = bmi;
+
+                // Disease Distribution Chart
+                const ctx1 = document.getElementById('diseaseChart').getContext('2d');
+                new Chart(ctx1, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Disease', 'Healthy'],
+                        datasets: [{
+                            data: [data.disease_count, data.healthy_count],
+                            backgroundColor: [
+                                'rgba(255, 107, 107, 0.8)',
+                                'rgba(46, 204, 113, 0.8)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 107, 107, 1)',
+                                'rgba(46, 204, 113, 1)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { position: 'bottom' }
+                        }
+                    }
+                });
+
+                // Age Distribution Chart
+                const ctx2 = document.getElementById('ageChart').getContext('2d');
+                const ageBuckets = data.age_distribution;
+                new Chart(ctx2, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(ageBuckets),
+                        datasets: [{
+                            label: 'Count',
+                            data: Object.values(ageBuckets),
+                            backgroundColor: 'rgba(52, 152, 219, 0.8)',
+                            borderColor: 'rgba(52, 152, 219, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+
+            } catch (error) {
+                console.error('Error loading analytics:', error);
+                throw new Error('Failed to load analytics data');
+            }
+        }
+
+        // Load Results Data from localStorage
+        function loadResultsData() {
+            try {
+                const predictions = JSON.parse(localStorage.getItem('cardio_predictions')) || [];
+                
+                const totalPredictions = predictions.length;
+                let highRisk = 0, moderateRisk = 0, lowRisk = 0;
+                let diseaseCount = 0, healthyCount = 0;
+                let totalRisk = 0, totalAge = 0, totalWeight = 0;
+
+                predictions.forEach(pred => {
+                    if (pred.risk_level === 'High Risk') highRisk++;
+                    else if (pred.risk_level === 'Moderate Risk') moderateRisk++;
+                    else lowRisk++;
+
+                    if (pred.has_disease) diseaseCount++;
+                    else healthyCount++;
+
+                    totalRisk += pred.risk_percentage || 0;
+                    totalAge += pred.age_years || 0;
+                    totalWeight += pred.weight || 0;
+                });
+
+                // Update stat cards
+                document.getElementById('totalPredictions').textContent = totalPredictions;
+                document.getElementById('highRiskCount').textContent = highRisk;
+                document.getElementById('moderateRiskCount').textContent = moderateRisk;
+                document.getElementById('lowRiskCount').textContent = lowRisk;
+
+                // Update detailed stats
+                document.getElementById('yourDiseaseCount').textContent = diseaseCount;
+                document.getElementById('yourHealthyCount').textContent = healthyCount;
+                document.getElementById('yourDiseaseRate').textContent = totalPredictions > 0 ? 
+                    Math.round((diseaseCount / totalPredictions) * 100) + '%' : '-';
+                document.getElementById('avgRisk').textContent = totalPredictions > 0 ? 
+                    Math.round(totalRisk / totalPredictions) + '%' : '-';
+                document.getElementById('avgAge').textContent = totalPredictions > 0 ? 
+                    Math.round(totalAge / totalPredictions) + ' yrs' : '-';
+                document.getElementById('avgWeight').textContent = totalPredictions > 0 ? 
+                    Math.round(totalWeight / totalPredictions) + ' kg' : '-';
+
+                // Update insights
+                document.getElementById('insightPredictions').textContent = totalPredictions;
+
+                // Risk Distribution Chart
+                if (totalPredictions > 0) {
+                    const ctx = document.getElementById('riskDistributionChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['High Risk', 'Moderate Risk', 'Low Risk'],
+                            datasets: [{
+                                data: [highRisk, moderateRisk, lowRisk],
+                                backgroundColor: [
+                                    'rgba(255, 107, 107, 0.8)',
+                                    'rgba(243, 156, 18, 0.8)',
+                                    'rgba(46, 204, 113, 0.8)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 107, 107, 1)',
+                                    'rgba(243, 156, 18, 1)',
+                                    'rgba(46, 204, 113, 1)'
+                                ],
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { position: 'bottom' }
+                            }
+                        }
+                    });
+
+                    // Disease Status Chart
+                    const ctx2 = document.getElementById('diseaseStatusChart').getContext('2d');
+                    new Chart(ctx2, {
+                        type: 'pie',
+                        data: {
+                            labels: ['With Disease', 'Without Disease'],
+                            datasets: [{
+                                data: [diseaseCount, healthyCount],
+                                backgroundColor: [
+                                    'rgba(255, 107, 107, 0.8)',
+                                    'rgba(46, 204, 113, 0.8)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 107, 107, 1)',
+                                    'rgba(46, 204, 113, 1)'
+                                ],
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { position: 'bottom' }
+                            }
+                        }
+                    });
+                }
+
+                // Populate prediction table
+                const tbody = document.getElementById('predictionTableBody');
+                if (predictions.length > 0) {
+                    tbody.innerHTML = ''; // Clear the placeholder
+                    predictions.slice(0, 10).forEach(pred => {
+                        addRowToTable(pred);
+                    });
+                }
+
+            } catch (error) {
+                console.error('Error loading results:', error);
+                throw new Error('Failed to load prediction results');
+            }
+        }
+
+        // Add row to prediction table
+        function addRowToTable(pred) {
+            const tbody = document.getElementById('predictionTableBody');
+            const row = document.createElement('tr');
+            const datetime = new Date(pred.savedAt).toLocaleString();
+            
+            row.innerHTML = `
+                <td><strong>${pred.patientName || 'Unknown'}</strong></td>
+                <td>${datetime}</td>
+                <td>${pred.age_years || '-'}</td>
+                <td><strong style="color: ${
+                    pred.risk_level === 'High Risk' ? '#ff6b6b' : 
+                    pred.risk_level === 'Moderate Risk' ? '#f39c12' : 
+                    '#2ecc71'
+                }">${pred.risk_percentage.toFixed(1)}%</strong></td>
+                <td><span style="padding: 5px 10px; border-radius: 5px; color: white; background-color: ${
+                    pred.risk_level === 'High Risk' ? '#ff6b6b' : 
+                    pred.risk_level === 'Moderate Risk' ? '#f39c12' : 
+                    '#2ecc71'
+                }">${pred.risk_level}</span></td>
+                <td>${pred.has_disease ? '✓ Yes' : '✗ No'}</td>
+                <td>${pred.bp_systolic}/${pred.bp_diastolic}</td>
+                <td>
+                    <button class="btn-small btn-info" onclick="viewDetails('${pred.prediction_id}')">View</button>
+                    <button class="btn-small btn-danger" onclick="deletePrediction('${pred.prediction_id}')">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(row);
+        }
+
+        // View prediction details in modal
+        function viewDetails(predictionId) {
+            console.log('Opening details for prediction:', predictionId);
+            const predictions = JSON.parse(localStorage.getItem('cardio_predictions')) || [];
+            const pred = predictions.find(p => p.prediction_id === predictionId);
+
+            if (!pred) {
+                alert('Prediction not found');
+                console.error('Prediction not found:', predictionId);
+                return;
+            }
+
+            const modal = document.getElementById('detailsModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <label>Patient Name:</label>
+                        <span>${pred.patientName || 'N/A'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Father Name:</label>
+                        <span>${pred.fatherName || 'N/A'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Blood Group:</label>
+                        <span>${pred.bloodGroup || 'N/A'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Phone:</label>
+                        <span>${pred.phoneNumber || 'N/A'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Doctor Name:</label>
+                        <span>${pred.doctorName || 'N/A'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Date/Time:</label>
+                        <span>${new Date(pred.savedAt).toLocaleString()}</span>
+                    </div>
+                    <div class="detail-item" style="grid-column: 1/-1;">
+                        <label style="font-weight: bold; color: ${
+                            pred.risk_level === 'High Risk' ? '#ff6b6b' : 
+                            pred.risk_level === 'Moderate Risk' ? '#f39c12' : 
+                            '#2ecc71'
+                        }">Risk Assessment:</label>
+                        <span>${pred.risk_percentage.toFixed(2)}% - ${pred.risk_level}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Has Disease:</label>
+                        <span>${pred.has_disease ? '✓ Yes' : '✗ No'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Age:</label>
+                        <span>${pred.age_years} years</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Gender:</label>
+                        <span>${pred.gender === 1 ? 'Female' : 'Male'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Height:</label>
+                        <span>${pred.height} cm</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Weight:</label>
+                        <span>${pred.weight} kg</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Blood Pressure:</label>
+                        <span>${pred.bp_systolic}/${pred.bp_diastolic} mmHg</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Cholesterol:</label>
+                        <span>Level ${pred.cholesterol}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Glucose:</label>
+                        <span>Level ${pred.gluc}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Smoking:</label>
+                        <span>${pred.smoke ? 'Yes' : 'No'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Alcohol:</label>
+                        <span>${pred.alco ? 'Yes' : 'No'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Physical Activity:</label>
+                        <span>${pred.active ? 'Yes' : 'No'}</span>
+                    </div>
+                </div>
+            `;
+
+            // Setup download buttons with error handling
+            const pdfBtn = document.getElementById('downloadPdfBtn');
+            const csvBtn = document.getElementById('downloadCsvBtn');
+            const printBtn = document.getElementById('printBtn');
+
+            if (pdfBtn) {
+                pdfBtn.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Download PDF clicked');
+                    downloadPredictionPDF(predictionId);
+                };
+            }
+
+            if (csvBtn) {
+                csvBtn.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Download CSV clicked');
+                    downloadPredictionCSV(predictionId);
+                };
+            }
+
+            if (printBtn) {
+                printBtn.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Print clicked');
+                    printPredictionReport(predictionId);
+                };
+            }
+
+            modal.style.display = 'flex';
+            console.log('Modal displayed');
+        }
+
+        // Close modal
+        function closeModal() {
+            console.log('Closing modal');
+            const modal = document.getElementById('detailsModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Delete prediction
+        function deletePrediction(predictionId) {
+            console.log('Deleting prediction:', predictionId);
+            if (confirm('Are you sure you want to delete this prediction?')) {
+                const predictions = JSON.parse(localStorage.getItem('cardio_predictions')) || [];
+                const updated = predictions.filter(p => p.prediction_id !== predictionId);
+                localStorage.setItem('cardio_predictions', JSON.stringify(updated));
+                console.log('Prediction deleted, reloading page');
+                location.reload();
+            }
+        }
+
+        // Download functions (from predict.js)
+        function downloadPredictionPDF(predictionId) {
+            console.log('Generating PDF for:', predictionId);
+            const predictions = JSON.parse(localStorage.getItem('cardio_predictions')) || [];
+            const pred = predictions.find(p => p.prediction_id === predictionId);
+            
+            if (!pred) {
+                console.error('Prediction not found for PDF');
+                alert('Prediction not found');
+                return;
+            }
+
+            let report = 'CARDIOVASCULAR DISEASE PREDICTION REPORT\n';
+            report += '='.repeat(80) + '\n\n';
+            report += 'PATIENT INFORMATION\n';
+            report += '-'.repeat(80) + '\n';
+            report += `Name: ${pred.patientName || 'N/A'}\n`;
+            report += `Father's Name: ${pred.fatherName || 'N/A'}\n`;
+            report += `Blood Group: ${pred.bloodGroup || 'N/A'}\n`;
+            report += `Phone: ${pred.phoneNumber || 'N/A'}\n`;
+            report += `Doctor: ${pred.doctorName || 'N/A'}\n`;
+            report += `Date: ${new Date(pred.savedAt).toLocaleString()}\n\n`;
+            
+            report += 'HEALTH METRICS\n';
+            report += '-'.repeat(80) + '\n';
+            report += `Age: ${pred.age_years} years\n`;
+            report += `Gender: ${pred.gender === 1 ? 'Female' : 'Male'}\n`;
+            report += `Height: ${pred.height} cm\n`;
+            report += `Weight: ${pred.weight} kg\n`;
+            report += `Blood Pressure: ${pred.bp_systolic}/${pred.bp_diastolic} mmHg\n`;
+            report += `Cholesterol Level: ${pred.cholesterol}\n`;
+            report += `Glucose Level: ${pred.gluc}\n`;
+            report += `Smoking: ${pred.smoke ? 'Yes' : 'No'}\n`;
+            report += `Alcohol Use: ${pred.alco ? 'Yes' : 'No'}\n`;
+            report += `Physical Activity: ${pred.active ? 'Yes' : 'No'}\n\n`;
+            
+            report += 'PREDICTION RESULTS\n';
+            report += '='.repeat(80) + '\n';
+            report += `Risk Level: ${pred.risk_level}\n`;
+            report += `Risk Percentage: ${pred.risk_percentage.toFixed(2)}%\n`;
+            report += `Disease Status: ${pred.has_disease ? 'Positive' : 'Negative'}\n\n`;
+            
+            report += 'RECOMMENDATION\n';
+            report += '-'.repeat(80) + '\n';
+            if (pred.risk_percentage >= 70) {
+                report += 'HIGH RISK: Immediate medical consultation recommended.\n';
+                report += 'Please consult a cardiologist urgently.\n';
+            } else if (pred.risk_percentage >= 40) {
+                report += 'MODERATE RISK: Medical consultation recommended.\n';
+                report += 'Schedule an appointment with your doctor soon.\n';
+            } else {
+                report += 'LOW RISK: Maintain healthy lifestyle.\n';
+                report += 'Continue regular health check-ups.\n';
+            }
+
+            try {
+                const blob = new Blob([report], { type: 'text/plain' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `cardio_prediction_${pred.patientName || 'report'}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                console.log('PDF downloaded successfully');
+            } catch (error) {
+                console.error('Error downloading PDF:', error);
+                alert('Error downloading PDF: ' + error.message);
+            }
+        }
+
+        function downloadPredictionCSV(predictionId) {
+            console.log('Generating CSV for:', predictionId);
+            const predictions = JSON.parse(localStorage.getItem('cardio_predictions')) || [];
+            const pred = predictions.find(p => p.prediction_id === predictionId);
+            
+            if (!pred) {
+                console.error('Prediction not found for CSV');
+                alert('Prediction not found');
+                return;
+            }
+
+            let csv = 'Field,Value\n';
+            csv += `Patient Name,${pred.patientName || 'N/A'}\n`;
+            csv += `Father Name,${pred.fatherName || 'N/A'}\n`;
+            csv += `Blood Group,${pred.bloodGroup || 'N/A'}\n`;
+            csv += `Phone,${pred.phoneNumber || 'N/A'}\n`;
+            csv += `Doctor,${pred.doctorName || 'N/A'}\n`;
+            csv += `Date,${new Date(pred.savedAt).toLocaleString()}\n`;
+            csv += `Age (years),${pred.age_years}\n`;
+            csv += `Gender,${pred.gender === 1 ? 'Female' : 'Male'}\n`;
+            csv += `Height (cm),${pred.height}\n`;
+            csv += `Weight (kg),${pred.weight}\n`;
+            csv += `BP Systolic,${pred.bp_systolic}\n`;
+            csv += `BP Diastolic,${pred.bp_diastolic}\n`;
+            csv += `Cholesterol,${pred.cholesterol}\n`;
+            csv += `Glucose,${pred.gluc}\n`;
+            csv += `Smoking,${pred.smoke ? 'Yes' : 'No'}\n`;
+            csv += `Alcohol,${pred.alco ? 'Yes' : 'No'}\n`;
+            csv += `Activity,${pred.active ? 'Yes' : 'No'}\n`;
+            csv += `Risk Percentage,${pred.risk_percentage.toFixed(2)}%\n`;
+            csv += `Risk Level,${pred.risk_level}\n`;
+            csv += `Has Disease,${pred.has_disease ? 'Yes' : 'No'}\n`;
+
+            try {
+                const blob = new Blob([csv], { type: 'text/csv' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `cardio_prediction_${pred.patientName || 'report'}.csv`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                console.log('CSV downloaded successfully');
+            } catch (error) {
+                console.error('Error downloading CSV:', error);
+                alert('Error downloading CSV: ' + error.message);
+            }
+        }
+
+        function printPredictionReport(predictionId) {
+            const predictions = JSON.parse(localStorage.getItem('cardio_predictions')) || [];
+            const pred = predictions.find(p => p.prediction_id === predictionId);
+            
+            if (!pred) return;
+
+            const printWindow = window.open('', '_blank');
+            const riskColor = pred.risk_level === 'High Risk' ? '#ff6b6b' : 
+                            pred.risk_level === 'Moderate Risk' ? '#f39c12' : '#2ecc71';
+
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>CardioPredict Report - ${pred.patientName}</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            line-height: 1.6;
+                            margin: 20px;
+                            background: white;
+                        }
+                        .header {
+                            text-align: center;
+                            border-bottom: 3px solid #ff6b6b;
+                            padding-bottom: 10px;
+                            margin-bottom: 20px;
+                        }
+                        .header h1 { color: #ff6b6b; margin: 0; }
+                        .header p { color: #777; margin: 5px 0; }
+                        .section { margin-bottom: 20px; }
+                        .section h2 {
+                            background: #f5f5f5;
+                            padding: 10px;
+                            border-left: 4px solid #ff6b6b;
+                            margin: 0 0 10px 0;
+                        }
+                        .grid {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            gap: 15px;
+                        }
+                        .item {
+                            border-bottom: 1px solid #eee;
+                            padding-bottom: 5px;
+                        }
+                        .item label { font-weight: bold; color: #333; }
+                        .item span { color: #666; }
+                        .risk-box {
+                            background-color: ${riskColor};
+                            color: white;
+                            padding: 15px;
+                            border-radius: 5px;
+                            text-align: center;
+                            font-size: 24px;
+                            font-weight: bold;
+                            margin: 15px 0;
+                        }
+                        .recommendation {
+                            background: #f0f8ff;
+                            padding: 15px;
+                            border-left: 4px solid #3498db;
+                            margin-top: 15px;
+                        }
+                        .footer {
+                            margin-top: 30px;
+                            text-align: center;
+                            color: #999;
+                            font-size: 12px;
+                            border-top: 1px solid #eee;
+                            padding-top: 10px;
+                        }
+                        @media print {
+                            body { margin: 0; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>❤️ CardioPredict</h1>
+                        <p>Cardiovascular Disease Prediction Report</p>
+                    </div>
+
+                    <div class="section">
+                        <h2>Patient Information</h2>
+                        <div class="grid">
+                            <div class="item">
+                                <label>Name:</label>
+                                <span>${pred.patientName || 'N/A'}</span>
+                            </div>
+                            <div class="item">
+                                <label>Father's Name:</label>
+                                <span>${pred.fatherName || 'N/A'}</span>
+                            </div>
+                            <div class="item">
+                                <label>Blood Group:</label>
+                                <span>${pred.bloodGroup || 'N/A'}</span>
+                            </div>
+                            <div class="item">
+                                <label>Phone:</label>
+                                <span>${pred.phoneNumber || 'N/A'}</span>
+                            </div>
+                            <div class="item">
+                                <label>Doctor:</label>
+                                <span>${pred.doctorName || 'N/A'}</span>
+                            </div>
+                            <div class="item">
+                                <label>Date/Time:</label>
+                                <span>${new Date(pred.savedAt).toLocaleString()}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>Health Metrics</h2>
+                        <div class="grid">
+                            <div class="item">
+                                <label>Age:</label>
+                                <span>${pred.age_years} years</span>
+                            </div>
+                            <div class="item">
+                                <label>Gender:</label>
+                                <span>${pred.gender === 1 ? 'Female' : 'Male'}</span>
+                            </div>
+                            <div class="item">
+                                <label>Height:</label>
+                                <span>${pred.height} cm</span>
+                            </div>
+                            <div class="item">
+                                <label>Weight:</label>
+                                <span>${pred.weight} kg</span>
+                            </div>
+                            <div class="item">
+                                <label>Blood Pressure:</label>
+                                <span>${pred.bp_systolic}/${pred.bp_diastolic} mmHg</span>
+                            </div>
+                            <div class="item">
+                                <label>Cholesterol:</label>
+                                <span>Level ${pred.cholesterol}</span>
+                            </div>
+                            <div class="item">
+                                <label>Glucose:</label>
+                                <span>Level ${pred.gluc}</span>
+                            </div>
+                            <div class="item">
+                                <label>Smoking:</label>
+                                <span>${pred.smoke ? 'Yes' : 'No'}</span>
+                            </div>
+                            <div class="item">
+                                <label>Alcohol Use:</label>
+                                <span>${pred.alco ? 'Yes' : 'No'}</span>
+                            </div>
+                            <div class="item">
+                                <label>Physical Activity:</label>
+                                <span>${pred.active ? 'Yes' : 'No'}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>Prediction Results</h2>
+                        <div class="risk-box">${pred.risk_level}</div>
+                        <div style="text-align: center;">
+                            <strong style="font-size: 18px;">Risk Score: ${pred.risk_percentage.toFixed(2)}%</strong>
+                            <p style="color: #666;">Disease Status: ${pred.has_disease ? '✓ Positive' : '✗ Negative'}</p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="recommendation">
+                            <h3 style="margin-top: 0;">💊 Medical Recommendation</h3>
+                            ${pred.risk_percentage >= 70 ? 
+                                '<p><strong>HIGH RISK:</strong> Immediate medical consultation is URGENTLY recommended. Please consult a cardiologist at the earliest.</p>' :
+                            pred.risk_percentage >= 40 ? 
+                                '<p><strong>MODERATE RISK:</strong> Medical consultation is recommended. Schedule an appointment with your doctor soon.</p>' :
+                                '<p><strong>LOW RISK:</strong> Maintain a healthy lifestyle. Continue regular health check-ups and exercise.</p>'}
+                        </div>
+                    </div>
+
+                    <div class="footer">
+                        <p>This report is generated by CardioPredict - Cardiovascular Disease Prediction System</p>
+                        <p>Generated on: ${new Date().toLocaleString()}</p>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            setTimeout(() => printWindow.print(), 500);
+        }
+
+        // Print prediction report
+        function printPredictionReport(predictionId) {
+            const predictions = JSON.parse(localStorage.getItem('cardio_predictions')) || [];
+            const pred = predictions.find(p => p.prediction_id === predictionId);
+            
+            if (!pred) {
+                alert('Prediction not found');
+                return;
+            }
+
+            const riskColor = pred.risk_level === 'High Risk' ? '#ff6b6b' : 
+                            pred.risk_level === 'Moderate Risk' ? '#f39c12' : '#2ecc71';
+
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`<!DOCTYPE html>
+<html>
+<head>
+    <title>CardioPredict Report - ${pred.patientName}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background: white;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #ff6b6b;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header h1 { 
+            color: #ff6b6b; 
+            margin: 0; 
+        }
+        .section { 
+            margin-bottom: 20px; 
+        }
+        .section h2 {
+            background: #f5f5f5;
+            padding: 10px;
+            border-left: 4px solid #ff6b6b;
+            margin: 0 0 10px 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .item {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .item-label { 
+            font-weight: bold; 
+            color: #333; 
+        }
+        .item-value { 
+            color: #666; 
+        }
+        .risk-box {
+            background-color: ${riskColor};
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .recommendation {
+            background: #f0f8ff;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin-top: 15px;
+        }
+        @media print {
+            body { margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>❤️ CardioPredict</h1>
+        <p>Cardiovascular Disease Prediction Report</p>
+    </div>
+
+    <div class="section">
+        <h2>Patient Information</h2>
+        <div class="grid">
+            <div class="item">
+                <div class="item-label">Name:</div>
+                <div class="item-value">${pred.patientName || 'N/A'}</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Father's Name:</div>
+                <div class="item-value">${pred.fatherName || 'N/A'}</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Blood Group:</div>
+                <div class="item-value">${pred.bloodGroup || 'N/A'}</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Phone:</div>
+                <div class="item-value">${pred.phoneNumber || 'N/A'}</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Doctor:</div>
+                <div class="item-value">${pred.doctorName || 'N/A'}</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Date/Time:</div>
+                <div class="item-value">${new Date(pred.savedAt).toLocaleString()}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Health Metrics</h2>
+        <div class="grid">
+            <div class="item">
+                <div class="item-label">Age:</div>
+                <div class="item-value">${pred.age_years} years</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Gender:</div>
+                <div class="item-value">${pred.gender === 1 ? 'Female' : 'Male'}</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Height:</div>
+                <div class="item-value">${pred.height} cm</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Weight:</div>
+                <div class="item-value">${pred.weight} kg</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Blood Pressure:</div>
+                <div class="item-value">${pred.bp_systolic}/${pred.bp_diastolic} mmHg</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Cholesterol:</div>
+                <div class="item-value">Level ${pred.cholesterol}</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Glucose:</div>
+                <div class="item-value">Level ${pred.gluc}</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Smoking:</div>
+                <div class="item-value">${pred.smoke ? 'Yes' : 'No'}</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Alcohol Use:</div>
+                <div class="item-value">${pred.alco ? 'Yes' : 'No'}</div>
+            </div>
+            <div class="item">
+                <div class="item-label">Physical Activity:</div>
+                <div class="item-value">${pred.active ? 'Yes' : 'No'}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Prediction Results</h2>
+        <div class="risk-box">${pred.risk_level}</div>
+        <div style="text-align: center;">
+            <strong style="font-size: 18px;">Risk Score: ${pred.risk_percentage.toFixed(2)}%</strong>
+            <p style="color: #666;">Disease Status: ${pred.has_disease ? '✓ Positive' : '✗ Negative'}</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="recommendation">
+            <h3 style="margin-top: 0;">💊 Medical Recommendation</h3>
+            ${pred.risk_percentage >= 70 ? 
+                '<p><strong>HIGH RISK:</strong> Immediate medical consultation is URGENTLY recommended. Please consult a cardiologist at the earliest.</p>' :
+            pred.risk_percentage >= 40 ? 
+                '<p><strong>MODERATE RISK:</strong> Medical consultation is recommended. Schedule an appointment with your doctor soon.</p>' :
+                '<p><strong>LOW RISK:</strong> Maintain a healthy lifestyle. Continue regular health check-ups and exercise.</p>'}
+        </div>
+    </div>
+</body>
+</html>`);
+            printWindow.document.close();
+            setTimeout(() => printWindow.print(), 500);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('detailsModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

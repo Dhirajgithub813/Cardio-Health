@@ -126,9 +126,60 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Cardiovascular Disease Prediction System</p>
+    <footer class="footer-section">
+        <div class="footer-container">
+            <!-- Footer Content -->
+            <div class="footer-content">
+                <!-- About Section -->
+                <div class="footer-column">
+                    <h4>❤️ CardioPredict</h4>
+                    <p>AI-Powered Cardiovascular Disease Prediction System</p>
+                    <p class="footer-disclaimer">For educational & informational purposes only</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/predict">Predict</a></li>
+                        <li><a href="/dashboard">Analytics & Results</a></li>
+                        <li><a href="/about">About</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <p class="footer-contact">
+                        <strong>Email:</strong> <a href="mailto:support@cardiopredict.com">support@cardiopredict.com</a>
+                    </p>
+                    <p class="footer-contact">
+                        <strong>Phone:</strong> <a href="tel:+1-800-CARDIO-1">+1-800-CARDIO-1</a>
+                    </p>
+                    <p class="footer-contact">
+                        <strong>Address:</strong><br>Medical Plaza, Suite 500<br>Health City, HC 12345, USA
+                    </p>
+                </div>
+
+                <!-- Support -->
+                <div class="footer-column">
+                    <h4>Support & Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/documentation">Documentation</a></li>
+                        <li><a href="/feedback">Feedback</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 CardioPredict - Cardiovascular Disease Prediction System. All rights reserved.</p>
+                <p class="footer-credits">Built with ❤️ for healthcare innovation | <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a> | <a href="mailto:support@cardiopredict.com">Contact</a></p>
+            </div>
         </div>
     </footer>
 
@@ -258,18 +309,8 @@
                 const datetime = new Date(pred.timestamp).toLocaleString();
                 const riskColor = pred.color === 'red' ? '#ff6b6b' : (pred.color === 'orange' ? '#f39c12' : '#2ecc71');
                 
-                row.innerHTML = `
-                    <td><code>${pred.id}</code></td>
-                    <td>${datetime}</td>
-                    <td>${ageYears}</td>
-                    <td><strong style="color: ${riskColor}">${pred.risk_percentage.toFixed(2)}%</strong></td>
-                    <td><span class="risk-badge" style="background-color: ${riskColor}20; color: ${riskColor}; border: 1px solid ${riskColor}">${pred.risk_level}</span></td>
-                    <td>${pred.has_disease ? '🔴 Yes' : '🟢 No'}</td>
-                    <td>${pred.bp_systolic}/${pred.bp_diastolic}</td>
-                `;
-                tbody.appendChild(row);
-            }
-        });
-    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='predict.js') }}"></script>
+    <script src="{{ url_for('static', filename='results.js') }}"></script>
 </body>
 </html>

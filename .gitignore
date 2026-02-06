@@ -11,4 +11,5 @@ env/
 
 # OPTIONAL: Ignore the large model if you decide NOT to use LFS
 # Remove the # below if you want to completely skip uploading the model
-# *.pkl
+# *.pklif (window.diseaseChart) {
+    window.diseaseChart.destroy();

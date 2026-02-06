@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - CardioPredict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .faq-section {
+            padding: 60px 20px;
+            background: #f8f9fa;
+        }
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .faq-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+        }
+        .faq-header h1 {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+            font-weight: 700;
+        }
+        .faq-header p {
+            font-size: 1.1em;
+            color: #ecf0f1;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            font-weight: 500;
+        }
+        .faq-item {
+            background: white;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            user-select: none;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+            color: #2c3e50;
+            font-size: 1.05em;
+        }
+        .faq-question:hover {
+            background: #f5f5f5;
+        }
+        .faq-toggle {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+            line-height: 1.8;
+            font-weight: 500;
+        }
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+        .faq-category {
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+        .faq-category-title {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">
+                <h1>❤️ CardioPredict</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/predict">Predict</a></li>
+                <li class="dropdown">
+                    <a href="/dashboard">Analytics & Results</a>
+                    <div class="dropdown-menu">
+                        <a href="/dashboard#analytics-section">Analytics</a>
+                        <a href="/dashboard#results-section">Results</a>
+                    </div>
+                </li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="faq-header">
+                <h1>❓ Frequently Asked Questions</h1>
+                <p>Find answers to common questions about CardioPredict</p>
+            </div>
+
+            <!-- General Questions -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">General Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is CardioPredict?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        CardioPredict is an AI-powered system that predicts cardiovascular disease risk based on health parameters. It uses machine learning to analyze patient data and provide personalized risk assessments.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is CardioPredict a medical diagnosis tool?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        No. CardioPredict is for educational and informational purposes only. It should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult with a qualified healthcare professional for medical concerns.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Who can use CardioPredict?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        CardioPredict can be used by anyone interested in understanding their cardiovascular health risk. However, individuals with existing heart conditions should consult their doctor before using this tool.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Using the System -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Using the System</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I make a prediction?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        1. Go to the "Predict" page<br>
+                        2. Enter your health information (age, gender, height, weight, blood pressure, etc.)<br>
+                        3. Click "Get Prediction"<br>
+                        4. View your personalized risk assessment and recommendations
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What information do I need to provide?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Required Information: Age, Gender, Height, Weight, Blood Pressure (Systolic & Diastolic), Cholesterol Level, Glucose Level<br><br>
+                        Optional Information: Patient Name, Father's Name, Blood Group, Phone Numbers, Reference Doctor Name
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How accurate is the prediction?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        The accuracy depends on the quality and completeness of the input data. Our model has been trained on large cardiovascular datasets. However, this is an educational tool and should not be relied upon as a substitute for professional medical evaluation.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I save my predictions?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Your predictions are automatically saved locally in your browser. You can view your prediction history in the "Analytics & Results" section. You can also download your predictions as PDF or CSV files.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data & Privacy -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Data & Privacy</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is my data safe?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Your data is processed securely. Predictions are stored locally in your browser storage and are not transmitted to external servers. Please review our Privacy Policy for detailed information about data handling.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Will my data be shared?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        No. Your personal health data is not shared with third parties. It remains under your control and is stored only in your local browser unless you choose to download or share it.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long is my data retained?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Data stored locally in your browser remains until you clear your browser cache/storage. You can manually delete predictions from the "Analytics & Results" page at any time.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Troubleshooting</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What should I do if I get an error?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        1. Check that all required fields are filled<br>
+                        2. Ensure your values are within reasonable ranges<br>
+                        3. Refresh the page and try again<br>
+                        4. Clear your browser cache<br>
+                        5. Contact support if the problem persists
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Why is my prediction not showing?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Check your browser console (F12) for error messages. Ensure JavaScript is enabled. Try using a different browser. If the issue persists, contact our support team.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I use CardioPredict on mobile devices?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! CardioPredict is fully responsive and works on smartphones, tablets, and desktop computers. The interface automatically adjusts to fit your screen size.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Support & Contact</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How can I contact support?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        📧 Email: support@cardiopredict.com<br>
+                        📞 Phone: +1-800-CARDIO-1<br>
+                        📍 Address: Medical Plaza, Suite 500, Health City, HC 12345, USA<br><br>
+                        Response time: 24-48 hours
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Where can I find more information?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Visit our <a href="/documentation">Documentation</a> page for detailed guides and technical information. You can also check our <a href="/about">About</a> page for more information about the project.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>❤️ CardioPredict</h4>
+                    <p>AI-Powered Cardiovascular Disease Prediction System</p>
+                    <p class="footer-disclaimer">For educational & informational purposes only</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/predict">Predict</a></li>
+                        <li><a href="/dashboard">Analytics & Results</a></li>
+                        <li><a href="/about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <p class="footer-contact">
+                        <strong>Email:</strong> <a href="mailto:support@cardiopredict.com">support@cardiopredict.com</a>
+                    </p>
+                    <p class="footer-contact">
+                        <strong>Phone:</strong> <a href="tel:+1-800-CARDIO-1">+1-800-CARDIO-1</a>
+                    </p>
+                    <p class="footer-contact">
+                        <strong>Address:</strong><br>Medical Plaza, Suite 500<br>Health City, HC 12345, USA
+                    </p>
+                </div>
+                <div class="footer-column">
+                    <h4>Support & Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/documentation">Documentation</a></li>
+                        <li><a href="/feedback">Feedback</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CardioPredict - Cardiovascular Disease Prediction System. All rights reserved.</p>
+                <p class="footer-credits">Built with ❤️ for healthcare innovation | <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a> | <a href="mailto:support@cardiopredict.com">Contact</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

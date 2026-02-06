@@ -93,23 +93,65 @@ def predict_page():
     app.logger.debug("GET /predict - Prediction page")
     return render_template('predict.html')
 
+@app.route('/dashboard')
+def dashboard_page():
+    """Merged Analytics & Results with analytics and results"""
+    app.logger.debug("GET /dashboard - Analytics & Results page")
+    return render_template('dashboard.html')
+
 @app.route('/analytics')
 def analytics_page():
-    """Analytics dashboard page"""
-    app.logger.debug("GET /analytics - Analytics page")
-    return render_template('analytics.html')
+    """Analytics page (redirect to merged Analytics & Results)"""
+    app.logger.debug("GET /analytics - Analytics page (redirected to Analytics & Results)")
+    return render_template('dashboard.html')
 
 @app.route('/results')
 def results_page():
-    """Results and history page"""
-    app.logger.debug("GET /results - Results page")
-    return render_template('results.html')
+    """Results and history page (redirect to merged Analytics & Results)"""
+    app.logger.debug("GET /results - Results page (redirected to Analytics & Results)")
+    return render_template('dashboard.html')
 
 @app.route('/about')
 def about_page():
     """About page"""
     app.logger.debug("GET /about - About page")
     return render_template('about.html')
+
+@app.route('/test-dashboard')
+def test_dashboard():
+    """Test dashboard button functionality"""
+    app.logger.debug("GET /test-dashboard - Test page")
+    return render_template('test_dashboard.html')
+
+@app.route('/faq')
+def faq_page():
+    """FAQ - Frequently Asked Questions page"""
+    app.logger.debug("GET /faq - FAQ page")
+    return render_template('faq.html')
+
+@app.route('/documentation')
+def documentation_page():
+    """Documentation and API reference page"""
+    app.logger.debug("GET /documentation - Documentation page")
+    return render_template('documentation.html')
+
+@app.route('/privacy')
+def privacy_page():
+    """Privacy Policy page"""
+    app.logger.debug("GET /privacy - Privacy Policy page")
+    return render_template('privacy.html')
+
+@app.route('/terms')
+def terms_page():
+    """Terms of Service page"""
+    app.logger.debug("GET /terms - Terms of Service page")
+    return render_template('terms.html')
+
+@app.route('/feedback')
+def feedback_page():
+    """Patient feedback and service rating page"""
+    app.logger.debug("GET /feedback - Patient Feedback page")
+    return render_template('feedback.html')
 
 # ==================== API ENDPOINTS ====================
 
@@ -167,21 +209,25 @@ def predict():
         # Calculate BMI
         bmi = float(BMICalculator.calculate_bmi(data['height'], data['weight']))
         
-        # Create feature array
-        features = np.array([[
-            float(age_in_days),
-            float(data['gender']),
-            float(data['height']),
-            float(data['weight']),
-            float(data['ap_hi']),
-            float(data['ap_lo']),
-            float(data['cholesterol']),
-            float(data['gluc']),
-            float(data['smoke']),
-            float(data['alco']),
-            float(data['active']),
-            bmi
-        ]])
+        # Create feature array with proper scalar conversion
+        try:
+            features = np.array([[
+                np.float64(age_in_days),
+                np.float64(data['gender']),
+                np.float64(data['height']),
+                np.float64(data['weight']),
+                np.float64(data['ap_hi']),
+                np.float64(data['ap_lo']),
+                np.float64(data['cholesterol']),
+                np.float64(data['gluc']),
+                np.float64(data['smoke']),
+                np.float64(data['alco']),
+                np.float64(data['active']),
+                np.float64(bmi)
+            ]])
+        except Exception as e:
+            app.logger.error(f"Feature array creation error: {str(e)}, Data types: {[(k, type(v)) for k, v in data.items()]}")
+            raise
         
         # Scale features
         features_scaled = scaler.transform(features)
@@ -190,12 +236,14 @@ def predict():
         prediction = model.predict(features_scaled)
         probability = model.predict_proba(features_scaled)
         
-        # Extract scalar values
-        pred_value = int(prediction[0])
-        prob_value = probability[0]
+        # Extract scalar values - ensure they are Python scalars, not numpy arrays
+        pred_value = int(np.asarray(prediction).flatten()[0])
+        prob_array = np.asarray(probability).flatten()
+        prob_healthy = float(prob_array[0])
+        prob_disease = float(prob_array[1])
         
         # Get risk assessment
-        risk_info = RiskAssessor.get_risk_level(float(prob_value[1]))
+        risk_info = RiskAssessor.get_risk_level(prob_disease)
         
         # Generate unique prediction ID
         prediction_id = str(uuid.uuid4())[:8]
@@ -204,7 +252,7 @@ def predict():
         pred_record = PredictionRecord(
             prediction_id=prediction_id,
             prediction=pred_value,
-            probability=prob_value,
+            probability=[prob_healthy, prob_disease],
             risk_percentage=risk_info['percentage'],
             risk_level=risk_info['level'],
             color=risk_info['color'],
@@ -219,7 +267,13 @@ def predict():
             gluc=data['gluc'],
             smoke=data['smoke'],
             alco=data['alco'],
-            active=data['active']
+            active=data['active'],
+            patient_name=data.get('patientName'),
+            father_name=data.get('fatherName'),
+            blood_group=data.get('bloodGroup'),
+            phone_number=data.get('phoneNumber'),
+            alt_phone_number=data.get('altPhoneNumber'),
+            doctor_name=data.get('doctorName')
         )
         
         # Store prediction
@@ -234,8 +288,8 @@ def predict():
             'prediction_id': prediction_id,
             'prediction': pred_value,
             'has_disease': bool(pred_value),
-            'disease_probability': float(prob_value[1]),
-            'healthy_probability': float(prob_value[0]),
+            'disease_probability': prob_disease,
+            'healthy_probability': prob_healthy,
             'risk_percentage': risk_info['percentage'],
             'risk_level': risk_info['level'],
             'color': risk_info['color'],
@@ -478,34 +532,94 @@ def health_check():
         'timestamp': DateUtils.get_timestamp()
     }), 200
 
-@app.route('/api/statistics', methods=['GET'])
-def statistics():
-    """Get dataset statistics"""
+@app.route('/api/test-prediction', methods=['GET'])
+def test_prediction():
+    """Test endpoint to verify the model is working correctly"""
+    try:
+        if not model_loaded:
+            return jsonify({'error': 'Model not loaded'}), 503
+        
+        # Test with two very different patients
+        patient_healthy = np.array([[
+            25 * 365,  # age: 25 years in days
+            1,         # gender: Male
+            170,       # height: 170 cm
+            70,        # weight: 70 kg
+            110,       # ap_hi: 110 mmHg
+            70,        # ap_lo: 70 mmHg
+            1,         # cholesterol: Above Normal
+            1,         # gluc: Above Normal
+            0,         # smoke: No
+            0,         # alco: No
+            1          # active: Yes
+        ]])
+        
+        patient_risky = np.array([[
+            65 * 365,  # age: 65 years in days
+            2,         # gender: Female
+            160,       # height: 160 cm
+            95,        # weight: 95 kg
+            180,       # ap_hi: 180 mmHg
+            110,       # ap_lo: 110 mmHg
+            3,         # cholesterol: High
+            3,         # gluc: High
+            1,         # smoke: Yes
+            1,         # alco: Yes
+            0          # active: No
+        ]])
+        
+        # Scale and predict
+        patient_healthy_scaled = scaler.transform(patient_healthy)
+        patient_risky_scaled = scaler.transform(patient_risky)
+        
+        pred1 = model.predict_proba(patient_healthy_scaled)
+        pred2 = model.predict_proba(patient_risky_scaled)
+        
+        return jsonify({
+            'model_type': str(type(model).__name__),
+            'healthy_patient_risk': float(pred1[0][1] * 100),
+            'risky_patient_risk': float(pred2[0][1] * 100),
+            'model_working': True
+        }), 200
+    
+    except Exception as e:
+        app.logger.error(f"Test prediction error: {str(e)}")
+        return jsonify({'error': str(e), 'model_working': False}), 500
+
+@app.route('/api/analytics', methods=['GET'])
+def analytics_data():
+    """Get analytics data for dashboard"""
     try:
         df = pd.read_csv('cardio_train (1).csv', sep=';')
         
+        # Calculate age distribution
+        age_buckets = {}
+        for age_days in df['age']:
+            age_years = age_days // 365
+            bucket = f"{(age_years // 10) * 10}-{(age_years // 10) * 10 + 10}"
+            age_buckets[bucket] = age_buckets.get(bucket, 0) + 1
+        
         stats = {
             'total_records': len(df),
-            'disease_cases': int(df['cardio'].sum()),
-            'healthy_cases': int((df['cardio'] == 0).sum()),
+            'disease_count': int(df['cardio'].sum()),
+            'healthy_count': int((df['cardio'] == 0).sum()),
             'disease_percentage': float(df['cardio'].mean() * 100),
-            'features': {
-                'age': {
-                    'min': AgeConverter.days_to_years(int(df['age'].min())),
-                    'max': AgeConverter.days_to_years(int(df['age'].max())),
-                    'mean': AgeConverter.days_to_years(int(df['age'].mean()))
-                },
-                'weight': {
-                    'min': float(df['weight'].min()),
-                    'max': float(df['weight'].max()),
-                    'mean': float(df['weight'].mean())
-                },
-                'height': {
-                    'min': float(df['height'].min()),
-                    'max': float(df['height'].max()),
-                    'mean': float(df['height'].mean())
-                }
+            'age_stats': {
+                'min': int(df['age'].min()),
+                'max': int(df['age'].max()),
+                'mean': float(df['age'].mean())
             },
+            'weight_stats': {
+                'min': float(df['weight'].min()),
+                'max': float(df['weight'].max()),
+                'mean': float(df['weight'].mean())
+            },
+            'height_stats': {
+                'min': float(df['height'].min()),
+                'max': float(df['height'].max()),
+                'mean': float(df['height'].mean())
+            },
+            'age_distribution': age_buckets,
             'high_bp_count': int((df['ap_hi'] > 140).sum()),
             'high_cholesterol_count': int((df['cholesterol'] >= 2).sum()),
             'smokers_count': int((df['smoke'] == 1).sum())
@@ -514,9 +628,14 @@ def statistics():
         return jsonify(stats), 200
     
     except Exception as e:
-        log_error(app, "StatisticsError", str(e))
+        log_error(app, "AnalyticsError", str(e))
         response, status = ResponseFormatter.error(str(e), 400)
         return jsonify(response), status
+
+@app.route('/api/statistics', methods=['GET'])
+def statistics():
+    """Get dataset statistics (legacy endpoint - calls /api/analytics)"""
+    return analytics_data()
 
 @app.route('/api/clear-history', methods=['POST'])
 def clear_history():
@@ -585,416 +704,4 @@ if __name__ == '__main__':
         port=5000,
         threaded=True
     )
-
-@app.route('/results')
-def results_page():
-    """Results page"""
-    return render_template('results.html')
-
-# ==================== API ROUTES ====================
-
-@app.route('/api/predict', methods=['POST'])
-def predict():
-    """
-    Predict cardiovascular disease
-    Expected JSON:
-    {
-        "age": 18393,
-        "gender": 2,
-        "height": 168,
-        "weight": 62,
-        "ap_hi": 110,
-        "ap_lo": 80,
-        "cholesterol": 1,
-        "gluc": 1,
-        "smoke": 0,
-        "alco": 0,
-        "active": 1
-    }
-    """
-    try:
-        if model is None:
-            return jsonify({'error': 'Model not loaded'}), 500
-        
-        data = request.get_json()
-        
-        # Validate required fields
-        required_fields = ['age', 'gender', 'height', 'weight', 'ap_hi', 'ap_lo', 
-                          'cholesterol', 'gluc', 'smoke', 'alco', 'active']
-        
-        for field in required_fields:
-            if field not in data:
-                return jsonify({'error': f'Missing field: {field}'}), 400
-        
-        # Calculate BMI
-        bmi = BMICalculator.calculate_bmi(data['height'], data['weight'])
-        
-        # Create feature array in correct order
-        features = np.array([[
-            data['age'], data['gender'], data['height'], data['weight'],
-            data['ap_hi'], data['ap_lo'], data['cholesterol'], data['gluc'],
-            data['smoke'], data['alco'], data['active'], bmi
-        ]])
-        
-        # Scale features
-        features_scaled = scaler.transform(features)
-        
-        # Make prediction
-        prediction = model.predict(features_scaled)[0]
-        probability = model.predict_proba(features_scaled)[0]
-        
-        # Risk assessment
-        risk_percentage = probability[1] * 100
-        if risk_percentage < 30:
-            risk_level = "Low Risk"
-            color = "green"
-        elif risk_percentage < 60:
-            risk_level = "Moderate Risk"
-            color = "orange"
-        else:
-            risk_level = "High Risk"
-            color = "red"
-        
-        # Generate unique prediction ID
-        prediction_id = str(uuid.uuid4())[:8]
-        
-        # Store prediction in history
-        prediction_record = {
-            'id': prediction_id,
-            'prediction': int(prediction),
-            'has_disease': bool(prediction),
-            'disease_probability': float(probability[1]),
-            'healthy_probability': float(probability[0]),
-            'risk_percentage': float(risk_percentage),
-            'risk_level': risk_level,
-            'color': color,
-            'timestamp': datetime.now().isoformat(),
-            'age_days': data['age'],
-            'age_years': round(data['age'] / 365.25),
-            'gender': data['gender'],
-            'height': data['height'],
-            'weight': data['weight'],
-            'bp_systolic': data['ap_hi'],
-            'bp_diastolic': data['ap_lo'],
-            'cholesterol': data['cholesterol'],
-            'gluc': data['gluc'],
-            'smoke': data['smoke'],
-            'alco': data['alco'],
-            'active': data['active'],
-            'status': 'completed'
-        }
-        
-        # Track in history and statistics
-        prediction_history[prediction_id] = prediction_record
-        prediction_stats['total_predictions'] += 1
-        
-        if risk_percentage >= 60:
-            prediction_stats['total_high_risk'] += 1
-        elif risk_percentage >= 30:
-            prediction_stats['total_moderate_risk'] += 1
-        else:
-            prediction_stats['total_low_risk'] += 1
-        
-        return jsonify({
-            'prediction_id': prediction_id,
-            'prediction': int(prediction),
-            'has_disease': bool(prediction),
-            'disease_probability': float(probability[1]),
-            'healthy_probability': float(probability[0]),
-            'risk_percentage': float(risk_percentage),
-            'risk_level': risk_level,
-            'color': color,
-            'timestamp': datetime.now().isoformat()
-        })
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-@app.route('/api/health', methods=['GET'])
-def health_check():
-    """Health check endpoint"""
-    return jsonify({
-        'status': 'healthy',
-        'model_loaded': model is not None,
-        'timestamp': datetime.now().isoformat()
-    })
-
-@app.route('/api/model-info', methods=['GET'])
-def model_info():
-    """Get model information"""
-    if model is None:
-        return jsonify({'error': 'Model not loaded'}), 500
-    
-    return jsonify({
-        'features': feature_names,
-        'feature_count': len(feature_names),
-        'model_type': 'RandomForestClassifier',
-        'n_estimators': 100
-    })
-
-@app.route('/api/batch-predict', methods=['POST'])
-def batch_predict():
-    """
-    Batch prediction for multiple records
-    Expected JSON array of prediction objects
-    """
-    try:
-        if model is None:
-            return jsonify({'error': 'Model not loaded'}), 500
-        
-        data = request.get_json()
-        
-        if not isinstance(data, list):
-            return jsonify({'error': 'Expected JSON array'}), 400
-        
-        results = []
-        
-        for record in data:
-            bmi = BMICalculator.calculate_bmi(record['height'], record['weight'])
-            
-            features = np.array([[
-                record['age'], record['gender'], record['height'], record['weight'],
-                record['ap_hi'], record['ap_lo'], record['cholesterol'], record['gluc'],
-                record['smoke'], record['alco'], record['active'], bmi
-            ]])
-            
-            features_scaled = scaler.transform(features)
-            prediction = model.predict(features_scaled)[0]
-            probability = model.predict_proba(features_scaled)[0]
-            
-            risk_percentage = probability[1] * 100
-            
-            results.append({
-                'prediction': int(prediction),
-                'risk_percentage': float(risk_percentage)
-            })
-        
-        return jsonify({
-            'total_records': len(results),
-            'results': results,
-            'timestamp': datetime.now().isoformat()
-        })
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-@app.route('/api/statistics', methods=['GET'])
-def statistics():
-    """Get dataset statistics"""
-    try:
-        df = pd.read_csv('cardio_train (1).csv', sep=';')
-        
-        stats = {
-            'total_records': len(df),
-            'disease_cases': int(df['cardio'].sum()),
-            'healthy_cases': int((df['cardio'] == 0).sum()),
-            'disease_percentage': float(df['cardio'].mean() * 100),
-            'features': {
-                'age': {
-                    'min': float(df['age'].min()),
-                    'max': float(df['age'].max()),
-                    'mean': float(df['age'].mean())
-                },
-                'weight': {
-                    'min': float(df['weight'].min()),
-                    'max': float(df['weight'].max()),
-                    'mean': float(df['weight'].mean())
-                },
-                'height': {
-                    'min': float(df['height'].min()),
-                    'max': float(df['height'].max()),
-                    'mean': float(df['height'].mean())
-                }
-            },
-            'high_bp_count': int((df['ap_hi'] > 140).sum()),
-            'high_cholesterol_count': int((df['cholesterol'] >= 2).sum()),
-            'smokers_count': int((df['smoke'] == 1).sum())
-        }
-        
-        return jsonify(stats)
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-# ==================== PREDICTION STATUS ENDPOINTS ====================
-
-@app.route('/api/prediction/<prediction_id>', methods=['GET'])
-def get_prediction_status(prediction_id):
-    """Get status and details of a specific prediction by ID"""
-    try:
-        if prediction_id not in prediction_history:
-            return jsonify({'error': 'Prediction not found'}), 404
-        
-        prediction_record = prediction_history[prediction_id]
-        
-        return jsonify({
-            'status': 'found',
-            'prediction': prediction_record,
-            'timestamp': datetime.now().isoformat()
-        })
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-@app.route('/api/prediction-status', methods=['GET'])
-def prediction_status_summary():
-    """Get overall prediction status and statistics"""
-    try:
-        return jsonify({
-            'status': 'active',
-            'total_predictions': prediction_stats['total_predictions'],
-            'risk_distribution': {
-                'low_risk': prediction_stats['total_low_risk'],
-                'moderate_risk': prediction_stats['total_moderate_risk'],
-                'high_risk': prediction_stats['total_high_risk']
-            },
-            'recent_predictions': list(prediction_history.values())[-10:],  # Last 10
-            'timestamp': datetime.now().isoformat()
-        })
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-@app.route('/api/prediction-history', methods=['GET'])
-def prediction_history_endpoint():
-    """Get full prediction history"""
-    try:
-        limit = request.args.get('limit', 100, type=int)
-        offset = request.args.get('offset', 0, type=int)
-        
-        history_list = list(prediction_history.values())
-        total = len(history_list)
-        
-        # Sort by timestamp (newest first)
-        history_list.sort(key=lambda x: x['timestamp'], reverse=True)
-        
-        # Apply limit and offset
-        paginated = history_list[offset:offset+limit]
-        
-        return jsonify({
-            'status': 'success',
-            'total_records': total,
-            'returned': len(paginated),
-            'limit': limit,
-            'offset': offset,
-            'predictions': paginated,
-            'timestamp': datetime.now().isoformat()
-        })
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-@app.route('/api/prediction-stats', methods=['GET'])
-def prediction_detailed_stats():
-    """Get detailed prediction statistics"""
-    try:
-        if not prediction_history:
-            return jsonify({
-                'status': 'no_data',
-                'total_predictions': 0,
-                'message': 'No predictions made yet'
-            })
-        
-        predictions_list = list(prediction_history.values())
-        
-        # Calculate statistics
-        risk_percentages = [p['risk_percentage'] for p in predictions_list]
-        ages = [p['age'] for p in predictions_list]
-        weights = [p['weight'] for p in predictions_list]
-        
-        return jsonify({
-            'status': 'success',
-            'total_predictions': len(predictions_list),
-            'risk_distribution': {
-                'low_risk': prediction_stats['total_low_risk'],
-                'moderate_risk': prediction_stats['total_moderate_risk'],
-                'high_risk': prediction_stats['total_high_risk']
-            },
-            'disease_rate': {
-                'percentage': round((sum(1 for p in predictions_list if p['has_disease']) / len(predictions_list)) * 100, 2),
-                'with_disease': sum(1 for p in predictions_list if p['has_disease']),
-                'without_disease': sum(1 for p in predictions_list if not p['has_disease'])
-            },
-            'risk_percentage_stats': {
-                'min': round(min(risk_percentages), 2),
-                'max': round(max(risk_percentages), 2),
-                'average': round(sum(risk_percentages) / len(risk_percentages), 2)
-            },
-            'age_stats': {
-                'min': min(ages),
-                'max': max(ages),
-                'average': round(sum(ages) / len(ages), 2)
-            },
-            'weight_stats': {
-                'min': round(min(weights), 2),
-                'max': round(max(weights), 2),
-                'average': round(sum(weights) / len(weights), 2)
-            },
-            'timestamp': datetime.now().isoformat()
-        })
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-@app.route('/api/prediction-health', methods=['GET'])
-def prediction_health_endpoint():
-    """Check prediction service health and availability"""
-    try:
-        return jsonify({
-            'status': 'healthy',
-            'service': 'prediction',
-            'model_loaded': model is not None,
-            'total_predictions_made': prediction_stats['total_predictions'],
-            'prediction_history_count': len(prediction_history),
-            'timestamp': datetime.now().isoformat()
-        })
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-@app.route('/api/clear-history', methods=['POST'])
-def clear_prediction_history():
-    """Clear prediction history (admin endpoint)"""
-    try:
-        global prediction_history, prediction_stats
-        
-        cleared_count = len(prediction_history)
-        
-        prediction_history = {}
-        prediction_stats = {
-            'total_predictions': 0,
-            'total_high_risk': 0,
-            'total_moderate_risk': 0,
-            'total_low_risk': 0
-        }
-        
-        return jsonify({
-            'status': 'success',
-            'message': f'Cleared {cleared_count} predictions from history',
-            'timestamp': datetime.now().isoformat()
-        })
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-# ==================== ERROR HANDLERS ====================
-
-@app.errorhandler(404)
-def not_found(error):
-    return jsonify({'error': 'Not found'}), 404
-
-@app.errorhandler(500)
-def internal_error(error):
-    return jsonify({'error': 'Internal server error'}), 500
-
-if __name__ == '__main__':
-    print("Starting Cardiovascular Disease Prediction API...")
-    print("Server running at http://localhost:5000")
-    print("Dashboard available at http://localhost:5000/")
-    print("\n[OK] Prediction Status Tracking Enabled")
-    print("  - Use /api/prediction-status for overall stats")
-    print("  - Use /api/prediction/<id> for specific prediction")
-    print("  - Use /api/prediction-history for full history")
-    print("  - Use /api/prediction-stats for detailed statistics")
-    app.run(debug=True, host='0.0.0.0', port=5000)
 

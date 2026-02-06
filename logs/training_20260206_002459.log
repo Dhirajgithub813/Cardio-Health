@@ -1,0 +1,101 @@
+[2026-02-06 00:24:59] [INFO] ======================================================================
+[2026-02-06 00:24:59] [INFO] [PHASE 0] CARDIOVASCULAR DISEASE PREDICTION - COMPLETE ML PIPELINE
+[2026-02-06 00:24:59] [INFO] ======================================================================
+[2026-02-06 00:24:59] [INFO] [OK] Directories ready
+[2026-02-06 00:24:59] [INFO] 
+======================================================================
+[2026-02-06 00:24:59] [INFO] [PHASE 1] DATA PREPROCESSING
+[2026-02-06 00:24:59] [INFO] ======================================================================
+[2026-02-06 00:24:59] [INFO] [LOAD] Loading data from cardio_train (1).csv...
+[2026-02-06 00:24:59] [INFO] [OK] Data loaded: 70000 rows, 13 columns
+[2026-02-06 00:24:59] [INFO] 
+[CHECK] CHECKING MISSING VALUES...
+[2026-02-06 00:24:59] [INFO] [OK] No missing values found
+[2026-02-06 00:24:59] [INFO] 
+[CHECK] CHECKING DUPLICATES...
+[2026-02-06 00:24:59] [INFO] [OK] No duplicates found
+[2026-02-06 00:24:59] [INFO] 
+[CHECK] DETECTING OUTLIERS...
+[2026-02-06 00:24:59] [INFO]   • age: 4 outliers detected
+[2026-02-06 00:24:59] [INFO]   • height: 519 outliers detected
+[2026-02-06 00:24:59] [INFO]   • weight: 1819 outliers detected
+[2026-02-06 00:24:59] [INFO]   • ap_hi: 1435 outliers detected
+[2026-02-06 00:24:59] [INFO]   • ap_lo: 4632 outliers detected
+[2026-02-06 00:24:59] [INFO]   • gluc: 10521 outliers detected
+[2026-02-06 00:24:59] [INFO]   • smoke: 6169 outliers detected
+[2026-02-06 00:24:59] [INFO]   • alco: 3764 outliers detected
+[2026-02-06 00:24:59] [INFO]   • active: 13739 outliers detected
+[2026-02-06 00:24:59] [INFO] [REMOVED] Removed 1067 outlier rows
+[2026-02-06 00:24:59] [INFO] 
+[SCALE] PERFORMING FEATURE SCALING...
+[2026-02-06 00:24:59] [INFO] Using StandardScaler (mean=0, std=1)
+[2026-02-06 00:24:59] [INFO] [OK] Scaled 12 features
+[2026-02-06 00:24:59] [INFO] 
+[INFO] DATASET INFORMATION
+[2026-02-06 00:24:59] [INFO]   Total rows: 68933
+[2026-02-06 00:24:59] [INFO]   Total columns: 13
+[2026-02-06 00:24:59] [INFO]   Feature columns: 12
+[2026-02-06 00:24:59] [INFO]   Disease cases: 34290
+[2026-02-06 00:24:59] [INFO]   Healthy cases: 34643
+[2026-02-06 00:24:59] [INFO]   Disease rate: 49.74%
+[2026-02-06 00:24:59] [INFO] 
+======================================================================
+[2026-02-06 00:24:59] [INFO] [PHASE 2] VISUALIZATION & INSIGHTS
+[2026-02-06 00:24:59] [INFO] ======================================================================
+[2026-02-06 00:24:59] [INFO] [PLOT] Creating Age Distribution Histogram...
+[2026-02-06 00:25:02] [INFO] [OK] Saved: 01_age_distribution.png
+[2026-02-06 00:25:02] [INFO] [PLOT] Creating Gender Analysis...
+[2026-02-06 00:25:02] [INFO] [OK] Saved: 02_gender_analysis.png
+[2026-02-06 00:25:02] [INFO] [PLOT] Creating Box Plots for Outlier Detection...
+[2026-02-06 00:25:03] [INFO] [OK] Saved: 03_boxplots_outliers.png
+[2026-02-06 00:25:03] [INFO] [PLOT] Creating Correlation Heatmap...
+[2026-02-06 00:25:03] [INFO] [OK] Saved: 04_correlation_heatmap.png
+[2026-02-06 00:25:03] [INFO] 
+[CORR] TOP FEATURES CORRELATED WITH DISEASE:
+[2026-02-06 00:25:03] [INFO]   • ap_hi: 0.4355
+[2026-02-06 00:25:03] [INFO]   • age_years: 0.2382
+[2026-02-06 00:25:03] [INFO]   • age: 0.2382
+[2026-02-06 00:25:03] [INFO]   • cholesterol: 0.2206
+[2026-02-06 00:25:03] [INFO]   • weight: 0.1786
+[2026-02-06 00:25:03] [INFO]   • ap_lo: 0.1051
+[2026-02-06 00:25:03] [INFO]   • gluc: 0.0884
+[2026-02-06 00:25:03] [INFO]   • gender: 0.0066
+[2026-02-06 00:25:03] [INFO]   • id: 0.0040
+[2026-02-06 00:25:03] [INFO]   • alco: -0.0075
+[2026-02-06 00:25:03] [INFO]   • height: -0.0120
+[2026-02-06 00:25:03] [INFO]   • smoke: -0.0159
+[2026-02-06 00:25:03] [INFO]   • active: -0.0366
+[2026-02-06 00:25:03] [INFO] 
+======================================================================
+[2026-02-06 00:25:03] [INFO] [PHASE 3] FEATURE SELECTION FROM CORRELATION
+[2026-02-06 00:25:03] [INFO] ======================================================================
+[2026-02-06 00:25:03] [INFO] 
+[SELECT] Features with highest correlation to disease:
+[2026-02-06 00:25:03] [INFO]   ap_hi: 0.4355
+[2026-02-06 00:25:03] [INFO]   age_years: 0.2382
+[2026-02-06 00:25:03] [INFO]   age: 0.2382
+[2026-02-06 00:25:03] [INFO]   cholesterol: 0.2206
+[2026-02-06 00:25:03] [INFO]   weight: 0.1786
+[2026-02-06 00:25:03] [INFO] 
+[PREP] PREPARING DATA FOR TRAINING...
+[2026-02-06 00:25:03] [INFO] [OK] Data split: 55146 train, 13787 test
+[2026-02-06 00:25:03] [INFO] 
+============================================================
+[2026-02-06 00:25:03] [INFO] [PHASE 4] TRAINING 5 DIFFERENT MODELS
+[2026-02-06 00:25:03] [INFO] ============================================================
+[2026-02-06 00:25:03] [INFO] 
+[TRAIN] TRAINING: Logistic Regression...
+[2026-02-06 00:25:03] [INFO] [OK] Logistic Regression trained
+[2026-02-06 00:25:03] [INFO]   Train Accuracy: 0.7262
+[2026-02-06 00:25:03] [INFO]   Test Accuracy: 0.7326
+[2026-02-06 00:25:03] [INFO]   Precision: 0.7623
+[2026-02-06 00:25:03] [INFO]   Recall: 0.6745
+[2026-02-06 00:25:03] [INFO] 
+[TRAIN] TRAINING: K-Nearest Neighbors...
+[2026-02-06 00:25:14] [INFO] [OK] K-Nearest Neighbors trained
+[2026-02-06 00:25:14] [INFO]   Train Accuracy: 0.7832
+[2026-02-06 00:25:14] [INFO]   Test Accuracy: 0.6978
+[2026-02-06 00:25:14] [INFO]   Precision: 0.7014
+[2026-02-06 00:25:14] [INFO]   Recall: 0.6866
+[2026-02-06 00:25:14] [INFO] 
+[TRAIN] TRAINING: Support Vector Machine...

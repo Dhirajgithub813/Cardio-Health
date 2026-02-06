@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         // Disease distribution chart
         const diseaseCtx = document.getElementById('diseaseChart').getContext('2d');
-        if (window.diseaseChart) {
+        if (window.diseaseChart && typeof window.diseaseChart.destroy === 'function') {
             window.diseaseChart.destroy();
         }
 
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         // Age distribution chart
         const ageCtx = document.getElementById('ageChart').getContext('2d');
-        if (window.ageChart) {
+        if (window.ageChart && typeof window.ageChart.destroy === 'function') {
             window.ageChart.destroy();
         }
 

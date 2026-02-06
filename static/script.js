@@ -29,9 +29,17 @@ const API = {
                 },
                 body: JSON.stringify(data)
             });
-            return await response.json();
+            
+            const result = await response.json();
+            
+            // If response is not ok, add error flag
+            if (!response.ok) {
+                result.error = result.error || result.message || `HTTP ${response.status}`;
+            }
+            
+            return result;
         } catch (error) {
-            console.error('Prediction error:', error);
+            console.error('Prediction fetch error:', error);
             throw error;
         }
     },
