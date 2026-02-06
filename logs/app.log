@@ -2211,3 +2211,116 @@
 2026-02-06 21:08:31,436 - app - DEBUG - Result: {'level': 'High Risk', 'color': 'red', 'percentage': 69.34}
 2026-02-06 21:08:34,797 - app - DEBUG - GET /dashboard - Analytics & Results page
 2026-02-06 21:09:16,088 - app - DEBUG - GET / - Home page
+2026-02-06 21:42:22,845 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 21:42:33,944 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 21:43:09,083 - app - DEBUG - GET / - Home page
+2026-02-06 21:43:57,154 - app - DEBUG - GET / - Home page
+2026-02-06 21:44:17,674 - app - DEBUG - GET / - Home page
+2026-02-06 21:44:18,866 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 21:44:30,009 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 21:44:42,208 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 21:44:53,756 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 21:45:07,969 - app - DEBUG - GET /faq - FAQ page
+2026-02-06 21:45:08,677 - app - DEBUG - GET /about - About page
+2026-02-06 21:45:24,018 - app - DEBUG - GET /faq - FAQ page
+2026-02-06 21:47:17,571 - app - DEBUG - GET / - Home page
+2026-02-06 21:47:29,074 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 21:47:36,139 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 21:47:37,564 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 21:47:43,662 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 21:48:07,636 - app - DEBUG - GET /faq - FAQ page
+2026-02-06 21:48:12,343 - app - DEBUG - GET / - Home page
+2026-02-06 21:48:19,814 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 21:48:54,446 - app - INFO - Prediction Made: 5346d4a7
+2026-02-06 21:48:54,447 - app - DEBUG - Input: {'age': 23, 'gender': 1, 'height': 162, 'weight': 77, 'ap_hi': 120, 'ap_lo': 80, 'cholesterol': 2, 'gluc': 1, 'smoke': 0, 'alco': 0, 'active': 1, 'patientName': 'durgeswar ', 'fatherName': 'sachin Das', 'bloodGroup': 'AB+', 'phoneNumber': '7384772270', 'doctorName': 'Dipak'}
+2026-02-06 21:48:54,448 - app - DEBUG - Result: {'level': 'High Risk', 'color': 'red', 'percentage': 69.34}
+2026-02-06 21:48:57,495 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 21:49:11,168 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 21:49:19,601 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 21:53:33,103 - app - DEBUG - GET /about - About page
+2026-02-06 21:54:37,000 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 21:54:38,478 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 22:00:55,831 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 22:01:21,877 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 22:01:42,189 - app - DEBUG - GET /about - About page
+2026-02-06 22:01:51,383 - app - DEBUG - GET /faq - FAQ page
+2026-02-06 22:02:03,963 - app - DEBUG - GET /documentation - Documentation page
+2026-02-06 22:02:20,934 - app - DEBUG - GET /feedback - Patient Feedback page
+2026-02-06 22:02:33,173 - app - DEBUG - GET /privacy - Privacy Policy page
+2026-02-06 22:02:40,727 - app - DEBUG - GET /terms - Terms of Service page
+2026-02-06 22:02:46,814 - app - DEBUG - GET / - Home page
+2026-02-06 22:02:51,186 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 22:10:36,573 - app - DEBUG - GET /faq - FAQ page
+2026-02-06 22:10:55,518 - app - DEBUG - GET /documentation - Documentation page
+2026-02-06 22:11:07,299 - app - DEBUG - GET /feedback - Patient Feedback page
+2026-02-06 22:11:17,408 - app - DEBUG - GET /privacy - Privacy Policy page
+2026-02-06 22:11:31,062 - app - DEBUG - GET /terms - Terms of Service page
+2026-02-06 22:11:59,067 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 22:12:02,913 - app - DEBUG - GET / - Home page
+2026-02-06 22:12:05,408 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 22:12:08,688 - app - DEBUG - GET / - Home page
+2026-02-06 22:12:10,545 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 22:12:13,502 - app - DEBUG - GET / - Home page
+2026-02-06 22:12:15,427 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 22:12:46,889 - app - INFO - Prediction Made: d022aaed
+2026-02-06 22:12:46,891 - app - DEBUG - Input: {'age': 23, 'gender': 2, 'height': 162, 'weight': 77, 'ap_hi': 120, 'ap_lo': 80, 'cholesterol': 1, 'gluc': 1, 'smoke': 0, 'alco': 0, 'active': 1, 'patientName': 'diplai', 'fatherName': 'sachin Das', 'bloodGroup': 'O+', 'phoneNumber': '7384772270', 'doctorName': 'Dipak'}
+2026-02-06 22:12:46,892 - app - DEBUG - Result: {'level': 'High Risk', 'color': 'red', 'percentage': 69.34}
+2026-02-06 22:12:49,461 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 22:14:47,395 - app - INFO - ==================================================
+2026-02-06 22:14:47,396 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-06 22:14:47,396 - app - INFO - Environment: development
+2026-02-06 22:14:47,396 - app - INFO - Debug Mode: True
+2026-02-06 22:14:47,397 - app - INFO - Timestamp: 2026-02-06 22:14:47.396804
+2026-02-06 22:14:47,397 - app - INFO - ==================================================
+2026-02-06 22:14:56,485 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-06 22:14:56,486 - app - INFO -   - Model type: SVC
+2026-02-06 22:14:56,487 - app - INFO -   - Features: 12
+2026-02-06 22:14:56,495 - app - INFO - ============================================================
+2026-02-06 22:14:56,496 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-06 22:14:56,497 - app - INFO - ============================================================
+2026-02-06 22:14:56,497 - app - INFO - Environment: development
+2026-02-06 22:14:56,497 - app - INFO - Debug Mode: True
+2026-02-06 22:14:56,498 - app - INFO - Model Loaded: True
+2026-02-06 22:14:56,498 - app - INFO - ============================================================
+2026-02-06 22:14:56,499 - app - INFO - Server running at http://localhost:5000
+2026-02-06 22:14:56,499 - app - INFO - API Documentation at http://localhost:5000
+2026-02-06 22:14:56,500 - app - INFO - ============================================================
+2026-02-06 22:14:57,173 - app - INFO - ==================================================
+2026-02-06 22:14:57,174 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-06 22:14:57,174 - app - INFO - Environment: development
+2026-02-06 22:14:57,174 - app - INFO - Debug Mode: True
+2026-02-06 22:14:57,174 - app - INFO - Timestamp: 2026-02-06 22:14:57.174289
+2026-02-06 22:14:57,174 - app - INFO - ==================================================
+2026-02-06 22:14:57,965 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-06 22:14:57,966 - app - INFO -   - Model type: SVC
+2026-02-06 22:14:57,966 - app - INFO -   - Features: 12
+2026-02-06 22:14:57,970 - app - INFO - ============================================================
+2026-02-06 22:14:57,970 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-06 22:14:57,971 - app - INFO - ============================================================
+2026-02-06 22:14:57,971 - app - INFO - Environment: development
+2026-02-06 22:14:57,971 - app - INFO - Debug Mode: True
+2026-02-06 22:14:57,972 - app - INFO - Model Loaded: True
+2026-02-06 22:14:57,972 - app - INFO - ============================================================
+2026-02-06 22:14:57,972 - app - INFO - Server running at http://localhost:5000
+2026-02-06 22:14:57,972 - app - INFO - API Documentation at http://localhost:5000
+2026-02-06 22:14:57,972 - app - INFO - ============================================================
+2026-02-06 22:15:14,550 - app - DEBUG - GET / - Home page
+2026-02-06 22:15:33,377 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 22:15:37,896 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 22:15:52,893 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 22:15:54,492 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 22:16:09,185 - app - DEBUG - GET /predict - Prediction page
+2026-02-06 22:16:31,886 - app - INFO - Prediction Made: 746f3e1d
+2026-02-06 22:16:31,888 - app - DEBUG - Input: {'age': 23, 'gender': 1, 'height': 162, 'weight': 77, 'ap_hi': 120, 'ap_lo': 80, 'cholesterol': 2, 'gluc': 1, 'smoke': 0, 'alco': 0, 'active': 1, 'patientName': 'Dhiraj Das', 'fatherName': 'sachin Das', 'bloodGroup': 'AB+', 'phoneNumber': '7384772270', 'doctorName': 'Dipak'}
+2026-02-06 22:16:31,890 - app - DEBUG - Result: {'level': 'High Risk', 'color': 'red', 'percentage': 69.34}
+2026-02-06 22:16:34,939 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-06 22:16:56,482 - app - DEBUG - GET /about - About page
+2026-02-06 22:17:08,318 - app - DEBUG - GET /faq - FAQ page
+2026-02-06 22:17:15,791 - app - DEBUG - GET /documentation - Documentation page
+2026-02-06 22:18:18,241 - app - DEBUG - GET /feedback - Patient Feedback page
+2026-02-06 22:18:30,338 - app - DEBUG - GET /privacy - Privacy Policy page
+2026-02-06 22:18:37,344 - app - DEBUG - GET /terms - Terms of Service page
+2026-02-06 22:19:25,427 - app - DEBUG - GET /documentation - Documentation page
+2026-02-06 22:19:41,914 - app - DEBUG - GET /documentation - Documentation page
+2026-02-06 22:19:44,249 - app - DEBUG - GET /documentation - Documentation page
+2026-02-06 22:19:58,235 - app - DEBUG - GET /terms - Terms of Service page
