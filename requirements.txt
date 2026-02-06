@@ -1,14 +1,10 @@
-# ==================== BACKEND FRAMEWORK ====================
 Flask==3.0.0
 Flask-CORS==4.0.0
 Werkzeug==3.0.1
-
-# ==================== MACHINE LEARNING ====================
-scikit-learn==1.4.0
-pandas==2.2.0
+scikit-learn==1.3.2
+pandas==2.1.4
 numpy==1.26.3
-scipy==1.12.0
-
-# ==================== UTILITIES ====================
+scipy==1.11.4
 python-dotenv==1.0.0
 requests==2.31.0
+gunicorn==21.2.0
