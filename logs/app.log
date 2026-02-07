@@ -2326,3 +2326,96 @@
 2026-02-06 22:19:58,235 - app - DEBUG - GET /terms - Terms of Service page
 2026-02-06 22:56:07,969 - app - DEBUG - GET / - Home page
 2026-02-06 22:56:13,918 - app - DEBUG - GET /predict - Prediction page
+2026-02-07 00:28:03,374 - app - INFO - ==================================================
+2026-02-07 00:28:03,374 - app - INFO - ==================================================
+2026-02-07 00:28:03,374 - app - INFO - ==================================================
+2026-02-07 00:28:03,374 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-07 00:28:03,374 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-07 00:28:03,374 - app - INFO - Environment: development
+2026-02-07 00:28:03,374 - app - INFO - Environment: development
+2026-02-07 00:28:03,375 - app - INFO - Debug Mode: True
+opment
+2026-02-07 00:28:03,375 - app - INFO - Debug Mode: True
+2026-02-07 00:28:03,375 - app - INFO - Debug Mode: True
+2026-02-07 00:28:03,375 - app - INFO - Timestamp: 2026-02-07 00:28:03.375171
+2026-02-07 00:28:03,375 - app - INFO - Timestamp: 2026-02-07 00:28:03.375171
+2026-02-07 00:28:03,375 - app - INFO - Timestamp: 2026-02-07 00:28:03.375171
+2026-02-07 00:28:03,375 - app - INFO - ==================================================
+2026-02-07 00:28:03,375 - app - INFO - ==================================================
+2026-02-07 00:28:03,375 - app - INFO - ==================================================
+2026-02-07 00:28:04,520 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-07 00:28:04,520 - app - INFO -   - Model type: SVC
+2026-02-07 00:28:04,520 - app - INFO -   - Model type: SVC
+2026-02-07 00:28:04,520 - app - INFO -   - Model type: SVC
+2026-02-07 00:28:04,520 - app - INFO -   - Features: 12
+2026-02-07 00:28:04,520 - app - INFO -   - Features: 12
+2026-02-07 00:28:04,520 - app - INFO -   - Features: 12
+2026-02-07 00:28:04,524 - app - INFO - ============================================================
+2026-02-07 00:28:04,525 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+============
+2026-02-07 00:28:04,525 - app - INFO - ============================================================
+2026-02-07 00:28:04,525 - app - INFO - ============================================================
+2026-02-07 00:28:04,525 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-07 00:28:04,525 - app - INFO - Environment: development
+2026-02-07 00:28:04,525 - app - INFO - ================================================2026-02-07 00:28:04,525 - app - INFO - Debug Mode: True
+2026-02-07 00:28:04,525 - app - INFO - ============================================================
+2026-02-07 00:28:04,525 - app - INFO - Model Loaded: True
+ment
+2026-02-07 00:28:04,525 - app - INFO - Environment: development
+2026-02-07 00:28:04,525 - app - INFO - Debug Mode: True
+2026-02-07 00:28:04,525 - app - INFO - Debug Mode: True
+2026-02-07 00:28:04,525 - app - INFO - ============================================================
+2026-02-07 00:28:04,525 - app - INFO - Model Loaded: True
+2026-02-07 00:28:04,525 - app - INFO - Server running at http://localhost:5000
+2026-02-07 00:28:04,525 - app - INFO - ============================================================
+2026-02-07 00:28:04,525 - app - INFO - Model Loaded: True
+2026-02-07 00:28:04,527 - app - INFO - API Documentation at http://localhost:5000
+2026-02-07 00:28:04,527 - app - INFO - Server running at http://localhost:5000
+2026-02-07 00:28:04,527 - app - INFO - ============================================================
+2026-02-07 00:28:04,527 - app - INFO - API Documentation at http://localhost:5000
+2026-02-07 00:28:04,527 - app - INFO - Server running at http://localhost:5000
+2026-02-07 00:28:04,527 - app - INFO - ============================================================
+2026-02-07 00:28:04,527 - app - INFO - API Documentation at http://localhost:5000
+2026-02-07 00:28:04,527 - app - INFO - ============================================================
+2026-02-07 00:28:04,527 - app - INFO - ============================================================
+2026-02-07 00:28:58,283 - app - INFO - ==================================================
+2026-02-07 00:28:58,283 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-07 00:28:58,284 - app - INFO - Environment: development
+2026-02-07 00:28:58,284 - app - INFO - Debug Mode: True
+2026-02-07 00:28:58,284 - app - INFO - Timestamp: 2026-02-07 00:28:58.284917
+2026-02-07 00:28:58,284 - app - INFO - ==================================================
+2026-02-07 00:29:01,172 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-07 00:29:01,172 - app - INFO -   - Model type: SVC
+2026-02-07 00:29:01,172 - app - INFO -   - Features: 12
+2026-02-07 00:29:01,179 - app - INFO - ============================================================
+2026-02-07 00:29:01,179 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-07 00:29:01,179 - app - INFO - ============================================================
+2026-02-07 00:29:01,180 - app - INFO - Environment: development
+2026-02-07 00:29:01,180 - app - INFO - Debug Mode: True
+2026-02-07 00:29:01,180 - app - INFO - Model Loaded: True
+2026-02-07 00:29:01,180 - app - INFO - ============================================================
+2026-02-07 00:29:01,181 - app - INFO - Server running at http://localhost:5000
+2026-02-07 00:29:01,181 - app - INFO - API Documentation at http://localhost:5000
+2026-02-07 00:29:01,182 - app - INFO - ============================================================
+2026-02-07 00:29:01,699 - app - INFO - ==================================================
+2026-02-07 00:29:01,699 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-07 00:29:01,699 - app - INFO - Environment: development
+2026-02-07 00:29:01,700 - app - INFO - Debug Mode: True
+2026-02-07 00:29:01,700 - app - INFO - Timestamp: 2026-02-07 00:29:01.700623
+2026-02-07 00:29:01,701 - app - INFO - ==================================================
+2026-02-07 00:29:02,223 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-07 00:29:02,224 - app - INFO -   - Model type: SVC
+2026-02-07 00:29:02,224 - app - INFO -   - Features: 12
+2026-02-07 00:29:02,229 - app - INFO - ============================================================
+2026-02-07 00:29:02,229 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-07 00:29:02,229 - app - INFO - ============================================================
+2026-02-07 00:29:02,230 - app - INFO - Environment: development
+2026-02-07 00:29:02,230 - app - INFO - Debug Mode: True
+2026-02-07 00:29:02,230 - app - INFO - Model Loaded: True
+2026-02-07 00:29:02,230 - app - INFO - ============================================================
+2026-02-07 00:29:02,231 - app - INFO - Server running at http://localhost:5000
+2026-02-07 00:29:02,231 - app - INFO - API Documentation at http://localhost:5000
+2026-02-07 00:29:02,231 - app - INFO - ============================================================
+2026-02-07 00:29:30,726 - app - DEBUG - GET / - Home page
+2026-02-07 00:29:38,446 - app - DEBUG - GET /predict - Prediction page
+2026-02-07 00:29:40,245 - app - DEBUG - GET /dashboard - Analytics & Results page

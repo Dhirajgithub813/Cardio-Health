@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.py"
+    }
+  ]
+}
+```
+
+**NOTE:** Vercel doesn't support scipy/numpy well. Use Render or Railway instead.
+
+---
+
+## 📦 STEP 5: Verify Your Project Structure
+
+Your folder should look like this:
+```
+MAJOR PROJECT 4/
+│
+├── app.py                 # Your main Flask app
+├── requirements.txt       # Updated dependencies
+├── runtime.txt            # Python version
+├── Procfile              # For Heroku (if using Heroku)
+├── render.yaml           # For Render (if using Render)
+├── nixpacks.toml         # For Railway (if using Railway)
+├── .gitignore
+└── venv/                 # Don't commit this
+```
+
+---
+
+## 🔍 STEP 6: Update `.gitignore`
+
+**Action:** Create or update `.gitignore`:
+```
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
