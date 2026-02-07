@@ -2419,3 +2419,50 @@ ment
 2026-02-07 00:29:30,726 - app - DEBUG - GET / - Home page
 2026-02-07 00:29:38,446 - app - DEBUG - GET /predict - Prediction page
 2026-02-07 00:29:40,245 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-07 17:17:53,498 - app - INFO - ==================================================
+2026-02-07 17:17:53,499 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-07 17:17:53,499 - app - INFO - Environment: development
+2026-02-07 17:17:53,500 - app - INFO - Debug Mode: True
+2026-02-07 17:17:53,500 - app - INFO - Timestamp: 2026-02-07 17:17:53.500391
+2026-02-07 17:17:53,500 - app - INFO - ==================================================
+2026-02-07 17:18:09,858 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-07 17:18:09,859 - app - INFO -   - Model type: SVC
+2026-02-07 17:18:09,860 - app - INFO -   - Features: 12
+2026-02-07 17:18:09,871 - app - INFO - ============================================================
+2026-02-07 17:18:09,872 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-07 17:18:09,873 - app - INFO - ============================================================
+2026-02-07 17:18:09,873 - app - INFO - Environment: development
+2026-02-07 17:18:09,874 - app - INFO - Debug Mode: True
+2026-02-07 17:18:09,875 - app - INFO - Model Loaded: True
+2026-02-07 17:18:09,875 - app - INFO - ============================================================
+2026-02-07 17:18:09,876 - app - INFO - Server running at http://localhost:5000
+2026-02-07 17:18:09,876 - app - INFO - API Documentation at http://localhost:5000
+2026-02-07 17:18:09,877 - app - INFO - ============================================================
+2026-02-07 17:18:10,453 - app - INFO - ==================================================
+2026-02-07 17:18:10,453 - app - INFO - [OK] CardioPredict Backend Started
+2026-02-07 17:18:10,454 - app - INFO - Environment: development
+2026-02-07 17:18:10,454 - app - INFO - Debug Mode: True
+2026-02-07 17:18:10,454 - app - INFO - Timestamp: 2026-02-07 17:18:10.454383
+2026-02-07 17:18:10,454 - app - INFO - ==================================================
+2026-02-07 17:18:11,165 - app - INFO - [OK] ML Model loaded successfully!
+2026-02-07 17:18:11,166 - app - INFO -   - Model type: SVC
+2026-02-07 17:18:11,166 - app - INFO -   - Features: 12
+2026-02-07 17:18:11,170 - app - INFO - ============================================================
+2026-02-07 17:18:11,170 - app - INFO - [START] CardioPredict Backend v2.0 Starting...
+2026-02-07 17:18:11,170 - app - INFO - ============================================================
+2026-02-07 17:18:11,171 - app - INFO - Environment: development
+2026-02-07 17:18:11,171 - app - INFO - Debug Mode: True
+2026-02-07 17:18:11,171 - app - INFO - Model Loaded: True
+2026-02-07 17:18:11,171 - app - INFO - ============================================================
+2026-02-07 17:18:11,172 - app - INFO - Server running at http://localhost:5000
+2026-02-07 17:18:11,172 - app - INFO - API Documentation at http://localhost:5000
+2026-02-07 17:18:11,172 - app - INFO - ============================================================
+2026-02-07 17:18:24,365 - app - DEBUG - GET / - Home page
+2026-02-07 17:18:34,246 - app - DEBUG - GET / - Home page
+2026-02-07 17:18:36,685 - app - DEBUG - GET /predict - Prediction page
+2026-02-07 17:18:55,465 - app - INFO - Prediction Made: 1eb21168
+2026-02-07 17:18:55,466 - app - DEBUG - Input: {'age': 23, 'gender': 1, 'height': 162, 'weight': 77, 'ap_hi': 120, 'ap_lo': 80, 'cholesterol': 0, 'gluc': 1, 'smoke': 0, 'alco': 0, 'active': 1, 'patientName': 'Dhiraj Das', 'fatherName': 'sachin Das', 'phoneNumber': '7384772270', 'doctorName': 'Dipak'}
+2026-02-07 17:18:55,467 - app - DEBUG - Result: {'level': 'High Risk', 'color': 'red', 'percentage': 69.34}
+2026-02-07 17:18:58,829 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-07 17:19:12,058 - app - DEBUG - GET /dashboard - Analytics & Results page
+2026-02-07 17:29:28,638 - app - DEBUG - GET /dashboard - Analytics & Results page

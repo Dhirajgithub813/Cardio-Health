@@ -18,7 +18,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // API Helper Functions
 const API = {
-    base: 'http://localhost:5000/api',
+    base: '/api',  // Use relative URL instead of hardcoded localhost
 
     async predict(data) {
         try {
